@@ -27,22 +27,35 @@ export default class AuthController {
     })
   }
 
-  
+
   /**
   * User login
   */
   async login({ request, response }: HttpContext) {
+    try {
+      const { mail, password } = request.only(['mail', 'password'])
+      const user = await User.verifyCredentials(mail, password)
+      const token = await User.accessTokens.create(user)
+      return response.ok({ token, user })
+
+    } catch (error) {
+      return response.badRequest({ message: 'Email ou mot de passe incorrect' })
+    }
   }
+
 
 
   /**
   * User logout
   */
  async logout({ auth, response }: HttpContext) {
-    const user = auth.user!
-    const token = user.currentAccessToken
-    await User.accessTokens.delete(user, token.identifier)
-    return response.ok({ message: 'Logged out' })
+  const user = auth.user!
+  const token = user.currentAccessToken
+  if (!token) {
+    return response.badRequest({ message: 'Aucun jeton actif trouvé' })
+  }
+  await User.accessTokens.delete(user, token.identifier)
+  return response.ok({ message: 'Déconnecté' })
   }
 
 

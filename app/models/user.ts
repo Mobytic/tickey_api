@@ -52,10 +52,16 @@ export default class User extends compose(UserSchema, AuthFinder) {
   declare deletedAt: DateTime
 
   get initials() {
-    const [first, last] = this.fullName ? this.fullName.split(' ') : this.mail.split('@')
-    if (first && last) {
-      return `${first.charAt(0)}${last.charAt(0)}`.toUpperCase()
+    const name = (this.firstname && this.lastname) 
+      ? `${this.firstname} ${this.lastname}` 
+      : this.mail
+
+    if (!name) return '??'
+
+    const parts = name.split(/[ @.]/)
+    if (parts.length >= 2) {
+      return `${parts[0].charAt(0)}${parts[1].charAt(0)}`.toUpperCase()
     }
-    return `${first.slice(0, 2)}`.toUpperCase()
+    return name.slice(0, 2).toUpperCase()
   }
 }
