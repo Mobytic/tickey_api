@@ -27,4 +27,31 @@ export default class AuthController {
     })
   }
 
+  
+  /**
+  * User login
+  */
+  async login({ request, response }: HttpContext) {
+  }
+
+
+  /**
+  * User logout
+  */
+ async logout({ auth, response }: HttpContext) {
+    const user = auth.user!
+    const token = user.currentAccessToken
+    await User.accessTokens.delete(user, token.identifier)
+    return response.ok({ message: 'Logged out' })
+  }
+
+
+  /**
+  * User page
+  */
+ async show({ auth, response }: HttpContext) {
+    // Renvoie l'utilisateur actuellement connecté
+    return response.ok(auth.user)
+  }
+
 }
