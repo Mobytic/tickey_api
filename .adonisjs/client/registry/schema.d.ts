@@ -33,7 +33,7 @@ export interface Registry {
   }
   'profile.auth.show': {
     methods: ["GET","HEAD"]
-    pattern: '/api/v1/account/profile'
+    pattern: '/api/v1/auth/profile'
     types: {
       body: {}
       paramsTuple: []
@@ -45,7 +45,7 @@ export interface Registry {
   }
   'profile.auth.logout': {
     methods: ["POST"]
-    pattern: '/api/v1/account/logout'
+    pattern: '/api/v1/auth/logout'
     types: {
       body: {}
       paramsTuple: []

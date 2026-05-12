@@ -20,14 +20,14 @@ const routes = {
   },
   'profile.auth.show': {
     methods: ["GET","HEAD"],
-    pattern: '/api/v1/account/profile',
-    tokens: [{"old":"/api/v1/account/profile","type":0,"val":"api","end":""},{"old":"/api/v1/account/profile","type":0,"val":"v1","end":""},{"old":"/api/v1/account/profile","type":0,"val":"account","end":""},{"old":"/api/v1/account/profile","type":0,"val":"profile","end":""}],
+    pattern: '/api/v1/auth/profile',
+    tokens: [{"old":"/api/v1/auth/profile","type":0,"val":"api","end":""},{"old":"/api/v1/auth/profile","type":0,"val":"v1","end":""},{"old":"/api/v1/auth/profile","type":0,"val":"auth","end":""},{"old":"/api/v1/auth/profile","type":0,"val":"profile","end":""}],
     types: placeholder as Registry['profile.auth.show']['types'],
   },
   'profile.auth.logout': {
     methods: ["POST"],
-    pattern: '/api/v1/account/logout',
-    tokens: [{"old":"/api/v1/account/logout","type":0,"val":"api","end":""},{"old":"/api/v1/account/logout","type":0,"val":"v1","end":""},{"old":"/api/v1/account/logout","type":0,"val":"account","end":""},{"old":"/api/v1/account/logout","type":0,"val":"logout","end":""}],
+    pattern: '/api/v1/auth/logout',
+    tokens: [{"old":"/api/v1/auth/logout","type":0,"val":"api","end":""},{"old":"/api/v1/auth/logout","type":0,"val":"v1","end":""},{"old":"/api/v1/auth/logout","type":0,"val":"auth","end":""},{"old":"/api/v1/auth/logout","type":0,"val":"logout","end":""}],
     types: placeholder as Registry['profile.auth.logout']['types'],
   },
 } as const satisfies Record<string, AdonisEndpoint>

@@ -19,7 +19,7 @@ router
         router.get('profile', [AuthController, 'show'])
         router.post('logout', [AuthController, 'logout'])
       })
-      .prefix('account')
+      .prefix('auth')
       .as('profile')
       .use(middleware.auth())
   })

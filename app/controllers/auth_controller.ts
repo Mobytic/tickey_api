@@ -36,7 +36,9 @@ export default class AuthController {
       const { mail, password } = request.only(['mail', 'password'])
       const user = await User.verifyCredentials(mail, password)
       const token = await User.accessTokens.create(user)
-      return response.ok({ token, user })
+      return response.ok({ 
+        token: token.value!.release(), 
+        user: user })
 
     } catch (error) {
       return response.badRequest({ message: 'Email ou mot de passe incorrect' })
