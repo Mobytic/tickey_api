@@ -1,7 +1,7 @@
 import { BaseModel, column } from "@adonisjs/lucid/orm";
 
 
-export default class Category extends BaseModel {
+export default class Nametag extends BaseModel {
 
     @column({ isPrimary: true })
     declare id: number
