@@ -1,7 +1,8 @@
 import { DateTime } from 'luxon'
-import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
+import { BaseModel, belongsTo, column, manyToMany } from '@adonisjs/lucid/orm'
 import User from './user.ts'
 import * as relations from '@adonisjs/lucid/types/relations'
+import Nametag from './nametag.ts'
 
 export default class Ticket extends BaseModel {
     @column({ isPrimary: true })
@@ -36,4 +37,8 @@ export default class Ticket extends BaseModel {
 
     @belongsTo(() => User)
     declare user: relations.BelongsTo<typeof User>
+
+    @manyToMany(() => Nametag, {
+    pivotTable: 'ticket_tag', })
+    declare tags: relations.ManyToMany<typeof Nametag>
 }
