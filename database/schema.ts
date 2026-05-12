@@ -116,3 +116,12 @@ export class UserSchema extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
 }
+
+export class WebsiteSchema extends BaseModel {
+  static $columns = ['id', 'url'] as const
+  $columns = WebsiteSchema.$columns
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare url: string
+}
