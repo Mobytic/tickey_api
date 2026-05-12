@@ -66,6 +66,15 @@ export class TicketSchema extends BaseModel {
   declare userId: number
 }
 
+export class TicketsStatusSchema extends BaseModel {
+  static $columns = ['id', 'name'] as const
+  $columns = TicketsStatusSchema.$columns
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare name: string
+}
+
 export class UserSchema extends BaseModel {
   static $columns = ['companyName', 'createdAt', 'deletedAt', 'drivePath', 'firstname', 'id', 'lastname', 'mail', 'password', 'role', 'session', 'tel', 'updatedAt'] as const
   $columns = UserSchema.$columns
