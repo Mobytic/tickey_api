@@ -32,6 +32,31 @@ export class AuthAccessTokenSchema extends BaseModel {
   declare updatedAt: DateTime | null
 }
 
+export class TicketSchema extends BaseModel {
+  static $columns = ['archivedAt', 'bugLink', 'clientComment', 'createdAt', 'id', 'mailComment', 'teamComment', 'title', 'updatedAt', 'userId'] as const
+  $columns = TicketSchema.$columns
+  @column.dateTime()
+  declare archivedAt: DateTime | null
+  @column()
+  declare bugLink: string
+  @column()
+  declare clientComment: string
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare mailComment: string | null
+  @column()
+  declare teamComment: string | null
+  @column()
+  declare title: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+  @column()
+  declare userId: number
+}
+
 export class UserSchema extends BaseModel {
   static $columns = ['companyName', 'createdAt', 'deletedAt', 'drivePath', 'firstname', 'id', 'lastname', 'mail', 'password', 'role', 'session', 'tel', 'updatedAt'] as const
   $columns = UserSchema.$columns

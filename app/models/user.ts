@@ -3,8 +3,10 @@ import hash from '@adonisjs/core/services/hash'
 import { compose } from '@adonisjs/core/helpers'
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import { type AccessToken, DbAccessTokensProvider } from '@adonisjs/auth/access_tokens'
-import { column } from '@adonisjs/lucid/orm'
+import { column, hasMany } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
+import type { HasMany } from '@adonisjs/lucid/types/relations'
+import Ticket from '#models/ticket'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['mail'],
@@ -64,4 +66,7 @@ export default class User extends compose(UserSchema, AuthFinder) {
     }
     return name.slice(0, 2).toUpperCase()
   }
+
+  @hasMany(() => Ticket)
+  declare tickets: HasMany<typeof Ticket>
 }

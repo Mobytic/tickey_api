@@ -23,7 +23,7 @@ export default class AuthController {
     return response.created({
       message: 'Inscription réussie',
       user: user,
-      token: token,
+      token: token.value!.release(),
     })
   }
 
@@ -65,7 +65,6 @@ export default class AuthController {
   * User page
   */
  async show({ auth, response }: HttpContext) {
-    // Renvoie l'utilisateur actuellement connecté
     return response.ok(auth.user)
   }
 
