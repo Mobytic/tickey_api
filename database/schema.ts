@@ -41,6 +41,17 @@ export class CategorySchema extends BaseModel {
   declare name: string | null
 }
 
+export class NametagSchema extends BaseModel {
+  static $columns = ['color', 'id', 'name'] as const
+  $columns = NametagSchema.$columns
+  @column()
+  declare color: string | null
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare name: string
+}
+
 export class TicketSchema extends BaseModel {
   static $columns = ['archivedAt', 'bugLink', 'clientComment', 'createdAt', 'id', 'mailComment', 'teamComment', 'title', 'updatedAt', 'userId'] as const
   $columns = TicketSchema.$columns
