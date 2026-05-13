@@ -7,6 +7,7 @@ import { column, hasMany } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 import type { HasMany } from '@adonisjs/lucid/types/relations'
 import Ticket from '#models/ticket'
+import Website from './website'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['mail'],
@@ -69,4 +70,7 @@ export default class User extends compose(UserSchema, AuthFinder) {
 
   @hasMany(() => Ticket)
   declare tickets: HasMany<typeof Ticket>
+
+  @hasMany(() => Website)
+  public websites: HasMany<typeof Website>
 }

@@ -18,7 +18,23 @@ export default class extends BaseSchema {
         .references('id')
         .inTable('users')
         .onDelete('SET NULL')
-        .notNullable()
+        .nullable()
+
+      table
+        .integer('category_id')
+        .unsigned()
+        .references('id')
+        .inTable('categories')
+        .onDelete('RESTRICT')
+        .nullable()
+
+      table
+        .integer('ticket_status_id')
+        .unsigned()
+        .references('id')
+        .inTable('tickets_statuses')
+        .onDelete('RESTRICT')
+        .nullable()
 
       table.timestamp('created_at').notNullable()
       table.timestamp('updated_at').nullable()

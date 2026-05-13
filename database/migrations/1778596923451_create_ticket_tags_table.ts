@@ -12,12 +12,14 @@ export default class extends BaseSchema {
         .unsigned()
         .references('id')
         .inTable('tickets')
+        .onDelete('CASCADE')
 
       table
         .integer('tag_id')
         .unsigned()
         .references('id')
         .inTable('tags')
+        .onDelete('CASCADE')
     })
   }
 
