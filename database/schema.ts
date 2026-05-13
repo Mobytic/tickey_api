@@ -38,7 +38,7 @@ export class CategorySchema extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
   @column()
-  declare name: string | null
+  declare name: string
 }
 
 export class NametagSchema extends BaseModel {
@@ -50,6 +50,17 @@ export class NametagSchema extends BaseModel {
   declare id: number
   @column()
   declare name: string
+}
+
+export class TicketTagSchema extends BaseModel {
+  static $columns = ['id', 'tagId', 'ticketId'] as const
+  $columns = TicketTagSchema.$columns
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare tagId: number | null
+  @column()
+  declare ticketId: number | null
 }
 
 export class TicketSchema extends BaseModel {
