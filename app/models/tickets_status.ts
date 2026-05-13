@@ -1,6 +1,7 @@
 import { BaseModel, column, hasMany } from "@adonisjs/lucid/orm";
-import Ticket from "./ticket";
-import { HasMany } from "@adonisjs/lucid/types/relations";
+import Ticket from '#models/ticket'
+import type { HasMany } from "@adonisjs/lucid/types/relations";
+
 
 
 export default class TicketsStatus extends BaseModel {
@@ -12,5 +13,5 @@ export default class TicketsStatus extends BaseModel {
     declare name: string
 
     @hasMany(() => Ticket)
-    public tickets: HasMany<typeof Ticket>
+    declare tickets: HasMany<typeof Ticket>
 }

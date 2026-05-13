@@ -41,10 +41,10 @@ export default class Ticket extends BaseModel {
     declare user: relations.BelongsTo<typeof User>
 
     @belongsTo(() => TicketsStatus)
-    public status: relations.BelongsTo<typeof TicketsStatus>
+    declare status: relations.BelongsTo<typeof TicketsStatus>
 
     @belongsTo(() => Category)
-    public category: relations.BelongsTo<typeof Category>
+    declare category: relations.BelongsTo<typeof Category>
 
     @manyToMany(() => Nametag, {
     pivotTable: 'ticket_tag', })
