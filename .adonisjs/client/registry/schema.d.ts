@@ -7,19 +7,19 @@ import type { InferInput, SimpleError } from '@vinejs/vine/types'
 export type ParamValue = string | number | bigint | boolean
 
 export interface Registry {
-  'auth.auth.register': {
+  'auth.register': {
     methods: ["POST"]
     pattern: '/api/v1/auth/register'
     types: {
-      body: ExtractBody<InferInput<(typeof import('#validators/auth').registerValidator)>>
+      body: {}
       paramsTuple: []
       params: {}
-      query: ExtractQuery<InferInput<(typeof import('#validators/auth').registerValidator)>>
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/auth_controller').default['register']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth_controller').default['register']>>> | { status: 422; response: { errors: SimpleError[] } }
+      query: {}
+      response: unknown
+      errorResponse: unknown
     }
   }
-  'auth.auth.login': {
+  'auth.login': {
     methods: ["POST"]
     pattern: '/api/v1/auth/login'
     types: {
@@ -27,32 +27,56 @@ export interface Registry {
       paramsTuple: []
       params: {}
       query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/auth_controller').default['login']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth_controller').default['login']>>>
+      response: unknown
+      errorResponse: unknown
     }
   }
-  'profile.auth.show': {
+  'auth.show': {
     methods: ["GET","HEAD"]
-    pattern: '/api/v1/auth/profile'
+    pattern: '/api/v1/profile'
     types: {
       body: {}
       paramsTuple: []
       params: {}
       query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/auth_controller').default['show']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth_controller').default['show']>>>
+      response: unknown
+      errorResponse: unknown
     }
   }
-  'profile.auth.logout': {
+  'auth.logout': {
     methods: ["POST"]
-    pattern: '/api/v1/auth/logout'
+    pattern: '/api/v1/logout'
     types: {
       body: {}
       paramsTuple: []
       params: {}
       query: {}
-      response: ExtractResponse<Awaited<ReturnType<import('#controllers/auth_controller').default['logout']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth_controller').default['logout']>>>
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'tickets.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/tickets'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'tickets.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/tickets/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
     }
   }
 }

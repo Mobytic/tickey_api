@@ -3,15 +3,13 @@ import type { routes } from './index.ts'
 
 export interface ApiDefinition {
   auth: {
-    auth: {
-      register: typeof routes['auth.auth.register']
-      login: typeof routes['auth.auth.login']
-    }
+    register: typeof routes['auth.register']
+    login: typeof routes['auth.login']
+    show: typeof routes['auth.show']
+    logout: typeof routes['auth.logout']
   }
-  profile: {
-    auth: {
-      show: typeof routes['profile.auth.show']
-      logout: typeof routes['profile.auth.logout']
-    }
+  tickets: {
+    index: typeof routes['tickets.index']
+    show: typeof routes['tickets.show']
   }
 }

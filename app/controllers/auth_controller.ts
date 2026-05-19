@@ -1,6 +1,7 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import User from '#models/user'
 import { registerValidator } from '#validators/auth'
+import { loginValidator } from '#validators/auth'
 
 export default class AuthController {
 
@@ -11,7 +12,7 @@ export default class AuthController {
     public async index({ response }: HttpContext) {
     
       const users = await User.all()
-      
+
       return response.ok(users)
     }
 
@@ -27,7 +28,6 @@ export default class AuthController {
       mail: payload.mail,
       password: payload.password,
       companyName: payload.companyName,
-      role: 'client',
     })
     const token = await User.accessTokens.create(user)
 
@@ -43,13 +43,20 @@ export default class AuthController {
   * User login
   */
   async login({ request, response }: HttpContext) {
+
+    const { mail, password } = await request.validateUsing(loginValidator)
     try {
-      const { mail, password } = request.only(['mail', 'password'])
       const user = await User.verifyCredentials(mail, password)
       const token = await User.accessTokens.create(user)
       return response.ok({ 
         token: token.value!.release(), 
-        user: user })
+        user: {
+          firstname: user?.firstname,
+          lastname: user?.lastname,
+          companyName: user?.companyName,
+          mail: user.mail,
+          role: user.role,
+        } })
 
     } catch (error) {
       return response.badRequest({ message: 'Email ou mot de passe incorrect' })

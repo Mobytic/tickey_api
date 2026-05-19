@@ -4,21 +4,27 @@ type ParamValue = string | number | bigint | boolean
 
 export type ScannedRoutes = {
   ALL: {
-    'auth.auth.register': { paramsTuple?: []; params?: {} }
-    'auth.auth.login': { paramsTuple?: []; params?: {} }
-    'profile.auth.show': { paramsTuple?: []; params?: {} }
-    'profile.auth.logout': { paramsTuple?: []; params?: {} }
+    'auth.register': { paramsTuple?: []; params?: {} }
+    'auth.login': { paramsTuple?: []; params?: {} }
+    'auth.show': { paramsTuple?: []; params?: {} }
+    'auth.logout': { paramsTuple?: []; params?: {} }
+    'tickets.index': { paramsTuple?: []; params?: {} }
+    'tickets.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   POST: {
-    'auth.auth.register': { paramsTuple?: []; params?: {} }
-    'auth.auth.login': { paramsTuple?: []; params?: {} }
-    'profile.auth.logout': { paramsTuple?: []; params?: {} }
+    'auth.register': { paramsTuple?: []; params?: {} }
+    'auth.login': { paramsTuple?: []; params?: {} }
+    'auth.logout': { paramsTuple?: []; params?: {} }
   }
   GET: {
-    'profile.auth.show': { paramsTuple?: []; params?: {} }
+    'auth.show': { paramsTuple?: []; params?: {} }
+    'tickets.index': { paramsTuple?: []; params?: {} }
+    'tickets.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   HEAD: {
-    'profile.auth.show': { paramsTuple?: []; params?: {} }
+    'auth.show': { paramsTuple?: []; params?: {} }
+    'tickets.index': { paramsTuple?: []; params?: {} }
+    'tickets.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
 }
 declare module '@adonisjs/core/types/http' {

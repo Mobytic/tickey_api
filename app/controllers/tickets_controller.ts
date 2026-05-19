@@ -18,10 +18,16 @@ export default class TicketsController {
     */
     public async create({ request, response }: HttpContext) {
 
-        const payload = request.only(['title', 'description', 'status', 'priority', 'client_id'])
+        const payload = request.only(['title', 
+                                    'description', 
+                                    'status', 
+                                    'priority', 
+                                    'client_id'])
         const ticket = await Ticket.create(payload)
         
-        return response.created(ticket)
+        return response.created({
+            message: "Ticket créé et envoyé à l'équipe Mobytic ! :)",
+            ticket: ticket})
     }
 
     /**
@@ -33,4 +39,13 @@ export default class TicketsController {
 
         return response.ok(ticket)
     }
+
+    /**
+    * Ticket's update
+    */
+
+
+    /**
+    * Ticket's delete
+    */
 }
