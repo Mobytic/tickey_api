@@ -4,6 +4,17 @@ import { registerValidator } from '#validators/auth'
 
 export default class AuthController {
 
+
+    /**
+    * User index
+    */
+    public async index({ response }: HttpContext) {
+    
+      const users = await User.all()
+      
+      return response.ok(users)
+    }
+
     /**
      * New user registration
      */
