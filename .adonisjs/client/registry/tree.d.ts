@@ -10,6 +10,7 @@ export interface ApiDefinition {
   }
   tickets: {
     index: typeof routes['tickets.index']
+    create: typeof routes['tickets.create']
     show: typeof routes['tickets.show']
     update: typeof routes['tickets.update']
   }

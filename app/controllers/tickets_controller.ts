@@ -7,11 +7,18 @@ export default class TicketsController {
     /**
     * Ticket index
     */
-    public async index({ response }: HttpContext) {
+    public async index({ auth, response }: HttpContext) {
     
-        const tickets = await Ticket.all()
+        const currentUser = auth.user!
+        const ticketQuery = Ticket.query()
+        if (currentUser.role !== 'admin') {
+        ticketQuery.where('userId', currentUser.id)
+        }
+        const tickets = await ticketQuery.orderBy('createdAt', 'desc')
 
-        return response.ok(tickets)
+        return response.ok({
+        tickets: tickets
+        })
     }
 
     /**
@@ -65,8 +72,8 @@ export default class TicketsController {
     return response.ok({
         message: 'Ticket mis à jour avec succès !',
         ticket: ticket
-    })
-}
+        })
+    }
 
 
 }

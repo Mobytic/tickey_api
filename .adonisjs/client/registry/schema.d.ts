@@ -67,6 +67,18 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'tickets.create': {
+    methods: ["POST"]
+    pattern: '/api/v1/tickets/create'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
   'tickets.show': {
     methods: ["GET","HEAD"]
     pattern: '/api/v1/tickets/:id'

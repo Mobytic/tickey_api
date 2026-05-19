@@ -36,6 +36,12 @@ const routes = {
     tokens: [{"old":"/api/v1/tickets","type":0,"val":"api","end":""},{"old":"/api/v1/tickets","type":0,"val":"v1","end":""},{"old":"/api/v1/tickets","type":0,"val":"tickets","end":""}],
     types: placeholder as Registry['tickets.index']['types'],
   },
+  'tickets.create': {
+    methods: ["POST"],
+    pattern: '/api/v1/tickets/create',
+    tokens: [{"old":"/api/v1/tickets/create","type":0,"val":"api","end":""},{"old":"/api/v1/tickets/create","type":0,"val":"v1","end":""},{"old":"/api/v1/tickets/create","type":0,"val":"tickets","end":""},{"old":"/api/v1/tickets/create","type":0,"val":"create","end":""}],
+    types: placeholder as Registry['tickets.create']['types'],
+  },
   'tickets.show': {
     methods: ["GET","HEAD"],
     pattern: '/api/v1/tickets/:id',

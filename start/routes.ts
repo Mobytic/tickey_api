@@ -18,6 +18,7 @@ router.group(() => {
 
     router.group(() => {
       router.get('', [TicketsController, 'index'])
+      router.post('create', [TicketsController, 'create'])
       router.get(':id', [TicketsController, 'show'])
       router.patch(':id', [TicketsController, 'update'])
     }).prefix('tickets')
