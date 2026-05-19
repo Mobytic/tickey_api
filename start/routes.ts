@@ -11,12 +11,15 @@ router.group(() => {
   }).prefix('auth')
 
   router.group(() => {
-    router.get('profile', [AuthController, 'show'])
-    router.post('logout', [AuthController, 'logout'])
+    router.group(() => {
+      router.get('profile', [AuthController, 'show'])
+      router.post('logout', [AuthController, 'logout'])
+    }).prefix('auth')
 
     router.group(() => {
       router.get('', [TicketsController, 'index'])
       router.get(':id', [TicketsController, 'show'])
+      router.patch(':id', [TicketsController, 'update'])
     }).prefix('tickets')
 
   }).use(middleware.auth())

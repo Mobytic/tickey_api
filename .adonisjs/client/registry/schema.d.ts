@@ -33,7 +33,7 @@ export interface Registry {
   }
   'auth.show': {
     methods: ["GET","HEAD"]
-    pattern: '/api/v1/profile'
+    pattern: '/api/v1/auth/profile'
     types: {
       body: {}
       paramsTuple: []
@@ -45,7 +45,7 @@ export interface Registry {
   }
   'auth.logout': {
     methods: ["POST"]
-    pattern: '/api/v1/logout'
+    pattern: '/api/v1/auth/logout'
     types: {
       body: {}
       paramsTuple: []
@@ -69,6 +69,18 @@ export interface Registry {
   }
   'tickets.show': {
     methods: ["GET","HEAD"]
+    pattern: '/api/v1/tickets/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'tickets.update': {
+    methods: ["PATCH"]
     pattern: '/api/v1/tickets/:id'
     types: {
       body: {}

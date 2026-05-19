@@ -11,5 +11,6 @@ export interface ApiDefinition {
   tickets: {
     index: typeof routes['tickets.index']
     show: typeof routes['tickets.show']
+    update: typeof routes['tickets.update']
   }
 }

@@ -20,14 +20,14 @@ const routes = {
   },
   'auth.show': {
     methods: ["GET","HEAD"],
-    pattern: '/api/v1/profile',
-    tokens: [{"old":"/api/v1/profile","type":0,"val":"api","end":""},{"old":"/api/v1/profile","type":0,"val":"v1","end":""},{"old":"/api/v1/profile","type":0,"val":"profile","end":""}],
+    pattern: '/api/v1/auth/profile',
+    tokens: [{"old":"/api/v1/auth/profile","type":0,"val":"api","end":""},{"old":"/api/v1/auth/profile","type":0,"val":"v1","end":""},{"old":"/api/v1/auth/profile","type":0,"val":"auth","end":""},{"old":"/api/v1/auth/profile","type":0,"val":"profile","end":""}],
     types: placeholder as Registry['auth.show']['types'],
   },
   'auth.logout': {
     methods: ["POST"],
-    pattern: '/api/v1/logout',
-    tokens: [{"old":"/api/v1/logout","type":0,"val":"api","end":""},{"old":"/api/v1/logout","type":0,"val":"v1","end":""},{"old":"/api/v1/logout","type":0,"val":"logout","end":""}],
+    pattern: '/api/v1/auth/logout',
+    tokens: [{"old":"/api/v1/auth/logout","type":0,"val":"api","end":""},{"old":"/api/v1/auth/logout","type":0,"val":"v1","end":""},{"old":"/api/v1/auth/logout","type":0,"val":"auth","end":""},{"old":"/api/v1/auth/logout","type":0,"val":"logout","end":""}],
     types: placeholder as Registry['auth.logout']['types'],
   },
   'tickets.index': {
@@ -41,6 +41,12 @@ const routes = {
     pattern: '/api/v1/tickets/:id',
     tokens: [{"old":"/api/v1/tickets/:id","type":0,"val":"api","end":""},{"old":"/api/v1/tickets/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/tickets/:id","type":0,"val":"tickets","end":""},{"old":"/api/v1/tickets/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['tickets.show']['types'],
+  },
+  'tickets.update': {
+    methods: ["PATCH"],
+    pattern: '/api/v1/tickets/:id',
+    tokens: [{"old":"/api/v1/tickets/:id","type":0,"val":"api","end":""},{"old":"/api/v1/tickets/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/tickets/:id","type":0,"val":"tickets","end":""},{"old":"/api/v1/tickets/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['tickets.update']['types'],
   },
 } as const satisfies Record<string, AdonisEndpoint>
 
