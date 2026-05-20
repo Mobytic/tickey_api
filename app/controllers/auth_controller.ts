@@ -120,8 +120,8 @@ export default class AuthController {
         await user.related('websites').updateOrCreateMany(payload.urls)
       }
       await transaction.commit()
-
-      return response.ok({ message: "Client et sites mis à jour avec succès !", user })
+      const updatedUser = await User.query().preload("websites")
+      return response.ok({ message: "Client et sites mis à jour avec succès !", updatedUser })
 
     } catch (error) {
       await transaction.rollback()
