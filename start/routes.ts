@@ -14,6 +14,7 @@ router.group(() => {
     router.group(() => {
       router.get('profile', [AuthController, 'show'])
       router.post('logout', [AuthController, 'logout'])
+      router.patch('update/:id', [AuthController, 'update'])
     }).prefix('auth')
 
     router.group(() => {

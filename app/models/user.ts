@@ -48,10 +48,10 @@ export default class User extends compose(UserSchema, AuthFinder) {
   @column.dateTime({ autoCreate: true, columnName: 'created_at' })
   declare createdAt: DateTime
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true, columnName: 'updated_at' })
+  @column.dateTime({ autoUpdate: true, columnName: 'updated_at' })
   declare updatedAt: DateTime
 
-  @column.dateTime({ autoCreate: true, columnName: 'deleted_at' })
+  @column.dateTime({columnName: 'deleted_at' })
   declare deletedAt: DateTime
 
   get initials() {
@@ -71,6 +71,8 @@ export default class User extends compose(UserSchema, AuthFinder) {
   @hasMany(() => Ticket)
   declare tickets: HasMany<typeof Ticket>
 
-  @hasMany(() => Website)
+  @hasMany(() => Website, {
+    foreignKey: 'userId',
+  })
   declare websites: HasMany<typeof Website>
 }

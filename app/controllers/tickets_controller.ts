@@ -55,23 +55,23 @@ export default class TicketsController {
     */
     public async update({ params, request, response }: HttpContext) {
 
-    const payload = await request.validateUsing(updateValidator)
-    const ticket = await Ticket.find(params.id)
-    if (!ticket) {
-        return response.notFound({ message: 'Ce ticket n\'existe pas ou a été supprimé.' })
-    }
-    ticket.merge({
-        title: payload.title,
-        clientComment: payload.clientComment,
-        bugLink: payload.bugLink,
-        teamComment: payload.teamComment,
-        mailComment: payload.mailComment,
-    })
-    await ticket.save()
+        const payload = await request.validateUsing(updateValidator)
+        const ticket = await Ticket.find(params.id)
+        if (!ticket) {
+            return response.notFound({ message: 'Ce ticket n\'existe pas ou a été supprimé.' })
+        }
+        ticket.merge({
+            title: payload.title,
+            clientComment: payload.clientComment,
+            bugLink: payload.bugLink,
+            teamComment: payload.teamComment,
+            mailComment: payload.mailComment,
+        })
+        await ticket.save()
 
-    return response.ok({
-        message: 'Ticket mis à jour avec succès !',
-        ticket: ticket
+        return response.ok({
+            message: 'Ticket mis à jour avec succès !',
+            ticket: ticket
         })
     }
 

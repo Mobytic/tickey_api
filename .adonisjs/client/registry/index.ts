@@ -30,6 +30,12 @@ const routes = {
     tokens: [{"old":"/api/v1/auth/logout","type":0,"val":"api","end":""},{"old":"/api/v1/auth/logout","type":0,"val":"v1","end":""},{"old":"/api/v1/auth/logout","type":0,"val":"auth","end":""},{"old":"/api/v1/auth/logout","type":0,"val":"logout","end":""}],
     types: placeholder as Registry['auth.logout']['types'],
   },
+  'auth.update': {
+    methods: ["PATCH"],
+    pattern: '/api/v1/auth/update/:id',
+    tokens: [{"old":"/api/v1/auth/update/:id","type":0,"val":"api","end":""},{"old":"/api/v1/auth/update/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/auth/update/:id","type":0,"val":"auth","end":""},{"old":"/api/v1/auth/update/:id","type":0,"val":"update","end":""},{"old":"/api/v1/auth/update/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['auth.update']['types'],
+  },
   'tickets.index': {
     methods: ["GET","HEAD"],
     pattern: '/api/v1/tickets',

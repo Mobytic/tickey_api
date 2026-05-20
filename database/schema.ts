@@ -64,12 +64,14 @@ export class TicketTagSchema extends BaseModel {
 }
 
 export class TicketSchema extends BaseModel {
-  static $columns = ['archivedAt', 'bugLink', 'clientComment', 'createdAt', 'id', 'mailComment', 'teamComment', 'title', 'updatedAt', 'userId'] as const
+  static $columns = ['archivedAt', 'bugLink', 'categoryId', 'clientComment', 'createdAt', 'id', 'mailComment', 'teamComment', 'ticketStatusId', 'title', 'updatedAt', 'userId'] as const
   $columns = TicketSchema.$columns
   @column.dateTime()
   declare archivedAt: DateTime | null
   @column()
   declare bugLink: string
+  @column()
+  declare categoryId: number | null
   @column()
   declare clientComment: string
   @column.dateTime({ autoCreate: true })
@@ -81,11 +83,13 @@ export class TicketSchema extends BaseModel {
   @column()
   declare teamComment: string | null
   @column()
+  declare ticketStatusId: number | null
+  @column()
   declare title: string
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
   @column()
-  declare userId: number
+  declare userId: number | null
 }
 
 export class TicketsStatusSchema extends BaseModel {
@@ -129,10 +133,12 @@ export class UserSchema extends BaseModel {
 }
 
 export class WebsiteSchema extends BaseModel {
-  static $columns = ['id', 'url'] as const
+  static $columns = ['id', 'url', 'userId'] as const
   $columns = WebsiteSchema.$columns
   @column({ isPrimary: true })
   declare id: number
   @column()
   declare url: string
+  @column()
+  declare userId: number | null
 }

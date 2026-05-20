@@ -8,6 +8,7 @@ export type ScannedRoutes = {
     'auth.login': { paramsTuple?: []; params?: {} }
     'auth.show': { paramsTuple?: []; params?: {} }
     'auth.logout': { paramsTuple?: []; params?: {} }
+    'auth.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'tickets.index': { paramsTuple?: []; params?: {} }
     'tickets.create': { paramsTuple?: []; params?: {} }
     'tickets.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -30,6 +31,7 @@ export type ScannedRoutes = {
     'tickets.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   PATCH: {
+    'auth.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'tickets.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
 }
