@@ -6,4 +6,5 @@
 export const controllers = {
   Auth: () => import('#controllers/auth_controller'),
   Tickets: () => import('#controllers/tickets_controller'),
+  Categories: () => import('#controllers/categories_controller'),
 }

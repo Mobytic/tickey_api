@@ -15,4 +15,9 @@ export interface ApiDefinition {
     show: typeof routes['tickets.show']
     update: typeof routes['tickets.update']
   }
+  categories: {
+    index: typeof routes['categories.index']
+    create: typeof routes['categories.create']
+    update: typeof routes['categories.update']
+  }
 }

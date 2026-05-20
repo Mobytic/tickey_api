@@ -115,4 +115,40 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'categories.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/category'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'categories.create': {
+    methods: ["POST"]
+    pattern: '/api/v1/category/create'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'categories.update': {
+    methods: ["PATCH"]
+    pattern: '/api/v1/category/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
 }

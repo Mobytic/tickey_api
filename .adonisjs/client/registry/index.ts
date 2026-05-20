@@ -60,6 +60,24 @@ const routes = {
     tokens: [{"old":"/api/v1/tickets/:id","type":0,"val":"api","end":""},{"old":"/api/v1/tickets/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/tickets/:id","type":0,"val":"tickets","end":""},{"old":"/api/v1/tickets/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['tickets.update']['types'],
   },
+  'categories.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/category',
+    tokens: [{"old":"/api/v1/category","type":0,"val":"api","end":""},{"old":"/api/v1/category","type":0,"val":"v1","end":""},{"old":"/api/v1/category","type":0,"val":"category","end":""}],
+    types: placeholder as Registry['categories.index']['types'],
+  },
+  'categories.create': {
+    methods: ["POST"],
+    pattern: '/api/v1/category/create',
+    tokens: [{"old":"/api/v1/category/create","type":0,"val":"api","end":""},{"old":"/api/v1/category/create","type":0,"val":"v1","end":""},{"old":"/api/v1/category/create","type":0,"val":"category","end":""},{"old":"/api/v1/category/create","type":0,"val":"create","end":""}],
+    types: placeholder as Registry['categories.create']['types'],
+  },
+  'categories.update': {
+    methods: ["PATCH"],
+    pattern: '/api/v1/category/:id',
+    tokens: [{"old":"/api/v1/category/:id","type":0,"val":"api","end":""},{"old":"/api/v1/category/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/category/:id","type":0,"val":"category","end":""},{"old":"/api/v1/category/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['categories.update']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }
