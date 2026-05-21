@@ -16,6 +16,7 @@ export type ScannedRoutes = {
     'categories.index': { paramsTuple?: []; params?: {} }
     'categories.create': { paramsTuple?: []; params?: {} }
     'categories.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'categories.delete': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   POST: {
     'auth.register': { paramsTuple?: []; params?: {} }
@@ -40,6 +41,9 @@ export type ScannedRoutes = {
     'auth.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'tickets.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'categories.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+  }
+  DELETE: {
+    'categories.delete': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
 }
 declare module '@adonisjs/core/types/http' {

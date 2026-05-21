@@ -151,4 +151,16 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'categories.delete': {
+    methods: ["DELETE"]
+    pattern: '/api/v1/category/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
 }

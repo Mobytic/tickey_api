@@ -29,6 +29,7 @@ router.group(() => {
       router.get('', [CategoriesController, 'index'])
       router.post('create', [CategoriesController, 'create'])
       router.patch(':id', [CategoriesController, 'update'])
+      router.delete(':id', [CategoriesController, 'delete'])
     }).prefix('category')
 
   }).use(middleware.auth())

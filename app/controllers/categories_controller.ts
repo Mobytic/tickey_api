@@ -1,5 +1,5 @@
 import Category from '#models/category'
-import { createValidator } from '#validators/ticket'
+import { createValidator } from '#validators/category'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class CategoriesController {
@@ -25,7 +25,7 @@ export default class CategoriesController {
     })
         
         return response.created({
-            message: "Catégorie créé avec succès",
+            message: "Catégorie créée avec succès",
             category: category})
     }
 
@@ -47,6 +47,25 @@ export default class CategoriesController {
         return response.ok({
             message: 'Catégorie mise à jour avec succès !',
             category: category
+        })
+    }
+
+    /**
+    * Categories's deletion
+    */
+   public async delete({ params, response }: HttpContext) {
+        const category = await Category.find(params.id)
+        
+        if (!category) {
+            return response.notFound({ 
+                message: 'Cette catégorie n\'existe pas ou a été supprimée.' 
+            })
+        }
+        
+        await category.delete()
+        
+        return response.ok({ 
+            message: 'Catégorie supprimée avec succès.' 
         })
     }
 }

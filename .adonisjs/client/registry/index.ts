@@ -78,6 +78,12 @@ const routes = {
     tokens: [{"old":"/api/v1/category/:id","type":0,"val":"api","end":""},{"old":"/api/v1/category/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/category/:id","type":0,"val":"category","end":""},{"old":"/api/v1/category/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['categories.update']['types'],
   },
+  'categories.delete': {
+    methods: ["DELETE"],
+    pattern: '/api/v1/category/:id',
+    tokens: [{"old":"/api/v1/category/:id","type":0,"val":"api","end":""},{"old":"/api/v1/category/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/category/:id","type":0,"val":"category","end":""},{"old":"/api/v1/category/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['categories.delete']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }

@@ -19,5 +19,6 @@ export interface ApiDefinition {
     index: typeof routes['categories.index']
     create: typeof routes['categories.create']
     update: typeof routes['categories.update']
+    delete: typeof routes['categories.delete']
   }
 }
