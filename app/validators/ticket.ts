@@ -7,6 +7,7 @@ export const createValidator = vine.create(
     bugLink: vine.string().trim(),
     teamComment: vine.string().optional(),
     mailComment: vine.string().optional(),
+    categoryId: vine.number(),
   })
 )
 
@@ -17,5 +18,8 @@ export const updateValidator = vine.create(
     bugLink: vine.string().trim().optional(),
     teamComment: vine.string().optional(),
     mailComment: vine.string().optional(),
+    statusId: vine.number().optional(),
+    categoryId: vine.number().optional(),
+    nametagIds: vine.array(vine.number()).optional()
   })
 )

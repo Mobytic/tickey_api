@@ -8,31 +8,38 @@ export default class TicketsController {
     * Ticket index
     */
     public async index({ auth, response }: HttpContext) {
-    
         const currentUser = auth.user!
         const ticketQuery = Ticket.query()
+        
         if (currentUser.role !== 'admin') {
-        ticketQuery.where('userId', currentUser.id)
+            ticketQuery.where('userId', currentUser.id)
         }
-        const tickets = await ticketQuery.orderBy('createdAt', 'desc')
+        
+        const tickets = await ticketQuery
+            .preload('status')
+            .preload('category')
+            .preload('nametags')
+            .orderBy('createdAt', 'desc')
 
-        return response.ok({
-        tickets: tickets
-        })
+        return response.ok({ tickets })
     }
 
     /**
     * Ticket's creation
     */
-    public async create({ request, response }: HttpContext) {
+    public async create({ auth, request, response }: HttpContext) {
 
+        const currentUser = auth.user!
         const payload = await request.validateUsing(createValidator)
         const ticket = await Ticket.create({
+            userId: currentUser.id,
+            ticketStatusId: 1,
             title: payload.title,
             clientComment: payload.clientComment,
             bugLink: payload.bugLink,
-            teamComment: payload.teamComment,
-            mailComment: payload.mailComment,
+            teamComment: currentUser.role === 'admin' ? payload.teamComment : undefined,
+            mailComment: currentUser.role === 'admin' ? payload.mailComment : undefined,
+            categoryId: payload.categoryId,
     })
         
         return response.created({
@@ -43,9 +50,18 @@ export default class TicketsController {
     /**
     * Get one ticket
     */
-    public async show({ params, response }: HttpContext) {
+    public async show({ auth, params, response }: HttpContext) {
+        const currentUser = auth.user!
+        const ticket = await Ticket.query()
+            .where('id', params.id)
+            .preload('status')
+            .preload('category')
+            .preload('nametags')
+            .firstOrFail()
 
-        const ticket = await Ticket.findOrFail(params.id)
+        if (currentUser.role !== 'admin' && ticket.userId !== currentUser.id) {
+            return response.forbidden({ message: 'Accès refusé.' })
+        }
 
         return response.ok(ticket)
     }
@@ -53,27 +69,39 @@ export default class TicketsController {
     /**
     * Ticket's update
     */
-    public async update({ params, request, response }: HttpContext) {
+    public async update({ auth, params, request, response }: HttpContext) {
 
+        const currentUser = auth.user!
         const payload = await request.validateUsing(updateValidator)
         const ticket = await Ticket.find(params.id)
         if (!ticket) {
             return response.notFound({ message: 'Ce ticket n\'existe pas ou a été supprimé.' })
         }
-        ticket.merge({
-            title: payload.title,
-            clientComment: payload.clientComment,
-            bugLink: payload.bugLink,
-            teamComment: payload.teamComment,
-            mailComment: payload.mailComment,
-        })
+        if (currentUser.role !== 'admin' && ticket.userId !== currentUser.id) {
+            return response.forbidden({ message: 'Accès refusé.' })
+        }
+        const dataToUpdate: Record<string, any> = {}
+        if (payload.title !== undefined) dataToUpdate.title = payload.title
+        if (payload.clientComment !== undefined) dataToUpdate.clientComment = payload.clientComment
+        if (payload.bugLink !== undefined) dataToUpdate.bugLink = payload.bugLink
+        if (currentUser.role === 'admin') {
+            if (payload.teamComment !== undefined) dataToUpdate.teamComment = payload.teamComment
+            if (payload.mailComment !== undefined) dataToUpdate.mailComment = payload.mailComment
+            if (payload.statusId !== undefined) dataToUpdate.statusId = payload.statusId
+            if (payload.categoryId !== undefined) dataToUpdate.categoryId = payload.categoryId
+        }
+
+        ticket.merge(dataToUpdate)
         await ticket.save()
+
+        if (payload.nametagIds !== undefined) {
+            await ticket.related('nametags').sync(payload.nametagIds)
+        }
+
 
         return response.ok({
             message: 'Ticket mis à jour avec succès !',
             ticket: ticket
         })
     }
-
-
 }

@@ -13,13 +13,13 @@ export default class Ticket extends BaseModel {
     @column()
     declare title: string
 
-    @column()
+    @column({ columnName: 'client_comment' })
     declare clientComment: string
 
-    @column()
+    @column({ columnName: 'team_comment' })
     declare teamComment: string | null
 
-    @column({ columnName: 'mail_Comment' })
+    @column({ columnName: 'mail_comment' })
     declare mailComment: string | null
 
     @column()
@@ -28,10 +28,10 @@ export default class Ticket extends BaseModel {
     @column.dateTime({ autoCreate: true })
     declare createdAt: DateTime
 
-    @column.dateTime({ autoCreate: true, autoUpdate: true })
+    @column.dateTime({ autoUpdate: true })
     declare updatedAt: DateTime
 
-    @column.dateTime({ autoCreate: true, autoUpdate: true })
+    @column.dateTime({ autoUpdate: true })
     declare archivedAt: DateTime
 
     @column()
@@ -40,13 +40,21 @@ export default class Ticket extends BaseModel {
     @belongsTo(() => User)
     declare user: relations.BelongsTo<typeof User>
 
+    @column()
+    declare ticketStatusId: number
+
     @belongsTo(() => TicketsStatus)
     declare status: relations.BelongsTo<typeof TicketsStatus>
+
+    @column()
+    declare categoryId: number
 
     @belongsTo(() => Category)
     declare category: relations.BelongsTo<typeof Category>
 
     @manyToMany(() => Nametag, {
-    pivotTable: 'ticket_tag', })
-    declare tags: relations.ManyToMany<typeof Nametag>
+        pivotTable: 'ticket_tag', 
+        pivotForeignKey: 'ticket_id',
+        pivotRelatedForeignKey: 'nametag_id'})
+    declare nametags: relations.ManyToMany<typeof Nametag>
 }
