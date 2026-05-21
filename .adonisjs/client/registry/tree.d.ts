@@ -21,4 +21,10 @@ export interface ApiDefinition {
     update: typeof routes['categories.update']
     delete: typeof routes['categories.delete']
   }
+  ticketStatuses: {
+    index: typeof routes['ticket_statuses.index']
+    create: typeof routes['ticket_statuses.create']
+    update: typeof routes['ticket_statuses.update']
+    delete: typeof routes['ticket_statuses.delete']
+  }
 }

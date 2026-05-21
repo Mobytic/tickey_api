@@ -7,4 +7,5 @@ export const controllers = {
   Auth: () => import('#controllers/auth_controller'),
   Categories: () => import('#controllers/categories_controller'),
   Tickets: () => import('#controllers/tickets_controller'),
+  TicketStatuses: () => import('#controllers/ticket_statuses_controller'),
 }

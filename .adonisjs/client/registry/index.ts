@@ -84,6 +84,30 @@ const routes = {
     tokens: [{"old":"/api/v1/category/:id","type":0,"val":"api","end":""},{"old":"/api/v1/category/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/category/:id","type":0,"val":"category","end":""},{"old":"/api/v1/category/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['categories.delete']['types'],
   },
+  'ticket_statuses.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/ticketStatus',
+    tokens: [{"old":"/api/v1/ticketStatus","type":0,"val":"api","end":""},{"old":"/api/v1/ticketStatus","type":0,"val":"v1","end":""},{"old":"/api/v1/ticketStatus","type":0,"val":"ticketStatus","end":""}],
+    types: placeholder as Registry['ticket_statuses.index']['types'],
+  },
+  'ticket_statuses.create': {
+    methods: ["POST"],
+    pattern: '/api/v1/ticketStatus/create',
+    tokens: [{"old":"/api/v1/ticketStatus/create","type":0,"val":"api","end":""},{"old":"/api/v1/ticketStatus/create","type":0,"val":"v1","end":""},{"old":"/api/v1/ticketStatus/create","type":0,"val":"ticketStatus","end":""},{"old":"/api/v1/ticketStatus/create","type":0,"val":"create","end":""}],
+    types: placeholder as Registry['ticket_statuses.create']['types'],
+  },
+  'ticket_statuses.update': {
+    methods: ["PATCH"],
+    pattern: '/api/v1/ticketStatus/:id',
+    tokens: [{"old":"/api/v1/ticketStatus/:id","type":0,"val":"api","end":""},{"old":"/api/v1/ticketStatus/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/ticketStatus/:id","type":0,"val":"ticketStatus","end":""},{"old":"/api/v1/ticketStatus/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['ticket_statuses.update']['types'],
+  },
+  'ticket_statuses.delete': {
+    methods: ["DELETE"],
+    pattern: '/api/v1/ticketStatus/:id',
+    tokens: [{"old":"/api/v1/ticketStatus/:id","type":0,"val":"api","end":""},{"old":"/api/v1/ticketStatus/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/ticketStatus/:id","type":0,"val":"ticketStatus","end":""},{"old":"/api/v1/ticketStatus/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['ticket_statuses.delete']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }

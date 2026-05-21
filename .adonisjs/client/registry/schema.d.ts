@@ -163,4 +163,52 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'ticket_statuses.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/ticketStatus'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'ticket_statuses.create': {
+    methods: ["POST"]
+    pattern: '/api/v1/ticketStatus/create'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'ticket_statuses.update': {
+    methods: ["PATCH"]
+    pattern: '/api/v1/ticketStatus/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'ticket_statuses.delete': {
+    methods: ["DELETE"]
+    pattern: '/api/v1/ticketStatus/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
 }
