@@ -27,4 +27,10 @@ export interface ApiDefinition {
     update: typeof routes['ticket_statuses.update']
     delete: typeof routes['ticket_statuses.delete']
   }
+  nametags: {
+    index: typeof routes['nametags.index']
+    create: typeof routes['nametags.create']
+    update: typeof routes['nametags.update']
+    delete: typeof routes['nametags.delete']
+  }
 }

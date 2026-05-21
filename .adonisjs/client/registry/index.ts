@@ -108,6 +108,30 @@ const routes = {
     tokens: [{"old":"/api/v1/ticketStatus/:id","type":0,"val":"api","end":""},{"old":"/api/v1/ticketStatus/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/ticketStatus/:id","type":0,"val":"ticketStatus","end":""},{"old":"/api/v1/ticketStatus/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['ticket_statuses.delete']['types'],
   },
+  'nametags.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/nametag',
+    tokens: [{"old":"/api/v1/nametag","type":0,"val":"api","end":""},{"old":"/api/v1/nametag","type":0,"val":"v1","end":""},{"old":"/api/v1/nametag","type":0,"val":"nametag","end":""}],
+    types: placeholder as Registry['nametags.index']['types'],
+  },
+  'nametags.create': {
+    methods: ["POST"],
+    pattern: '/api/v1/nametag/create',
+    tokens: [{"old":"/api/v1/nametag/create","type":0,"val":"api","end":""},{"old":"/api/v1/nametag/create","type":0,"val":"v1","end":""},{"old":"/api/v1/nametag/create","type":0,"val":"nametag","end":""},{"old":"/api/v1/nametag/create","type":0,"val":"create","end":""}],
+    types: placeholder as Registry['nametags.create']['types'],
+  },
+  'nametags.update': {
+    methods: ["PATCH"],
+    pattern: '/api/v1/nametag/:id',
+    tokens: [{"old":"/api/v1/nametag/:id","type":0,"val":"api","end":""},{"old":"/api/v1/nametag/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/nametag/:id","type":0,"val":"nametag","end":""},{"old":"/api/v1/nametag/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['nametags.update']['types'],
+  },
+  'nametags.delete': {
+    methods: ["DELETE"],
+    pattern: '/api/v1/nametag/:id',
+    tokens: [{"old":"/api/v1/nametag/:id","type":0,"val":"api","end":""},{"old":"/api/v1/nametag/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/nametag/:id","type":0,"val":"nametag","end":""},{"old":"/api/v1/nametag/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['nametags.delete']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }

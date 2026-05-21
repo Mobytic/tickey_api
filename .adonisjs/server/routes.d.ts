@@ -21,6 +21,10 @@ export type ScannedRoutes = {
     'ticket_statuses.create': { paramsTuple?: []; params?: {} }
     'ticket_statuses.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'ticket_statuses.delete': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'nametags.index': { paramsTuple?: []; params?: {} }
+    'nametags.create': { paramsTuple?: []; params?: {} }
+    'nametags.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'nametags.delete': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   POST: {
     'auth.register': { paramsTuple?: []; params?: {} }
@@ -29,6 +33,7 @@ export type ScannedRoutes = {
     'tickets.create': { paramsTuple?: []; params?: {} }
     'categories.create': { paramsTuple?: []; params?: {} }
     'ticket_statuses.create': { paramsTuple?: []; params?: {} }
+    'nametags.create': { paramsTuple?: []; params?: {} }
   }
   GET: {
     'auth.show': { paramsTuple?: []; params?: {} }
@@ -36,6 +41,7 @@ export type ScannedRoutes = {
     'tickets.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'categories.index': { paramsTuple?: []; params?: {} }
     'ticket_statuses.index': { paramsTuple?: []; params?: {} }
+    'nametags.index': { paramsTuple?: []; params?: {} }
   }
   HEAD: {
     'auth.show': { paramsTuple?: []; params?: {} }
@@ -43,16 +49,19 @@ export type ScannedRoutes = {
     'tickets.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'categories.index': { paramsTuple?: []; params?: {} }
     'ticket_statuses.index': { paramsTuple?: []; params?: {} }
+    'nametags.index': { paramsTuple?: []; params?: {} }
   }
   PATCH: {
     'auth.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'tickets.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'categories.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'ticket_statuses.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'nametags.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   DELETE: {
     'categories.delete': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'ticket_statuses.delete': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'nametags.delete': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
 }
 declare module '@adonisjs/core/types/http' {

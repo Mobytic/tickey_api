@@ -211,4 +211,52 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'nametags.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/nametag'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'nametags.create': {
+    methods: ["POST"]
+    pattern: '/api/v1/nametag/create'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'nametags.update': {
+    methods: ["PATCH"]
+    pattern: '/api/v1/nametag/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'nametags.delete': {
+    methods: ["DELETE"]
+    pattern: '/api/v1/nametag/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
 }

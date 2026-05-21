@@ -4,6 +4,7 @@ import { middleware } from '#start/kernel'
 import router from '@adonisjs/core/services/router'
 import CategoriesController from '#controllers/categories_controller'
 import TicketStatusesController from '#controllers/ticket_statuses_controller'
+import NametagsController from '#controllers/nametags_controller'
 
 
 router.group(() => {
@@ -39,6 +40,13 @@ router.group(() => {
       router.patch(':id', [TicketStatusesController, 'update'])
       router.delete(':id', [TicketStatusesController, 'delete'])
     }).prefix('ticketStatus')
+
+    router.group(() => {
+      router.get('', [NametagsController, 'index'])
+      router.post('create', [NametagsController, 'create'])
+      router.patch(':id', [NametagsController, 'update'])
+      router.delete(':id', [NametagsController, 'delete'])
+    }).prefix('nametag')
 
   }).use(middleware.auth())
 
