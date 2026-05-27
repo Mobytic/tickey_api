@@ -31,6 +31,18 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'auth.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/auth/users'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
   'auth.show': {
     methods: ["GET","HEAD"]
     pattern: '/api/v1/auth/profile'

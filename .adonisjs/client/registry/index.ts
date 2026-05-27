@@ -18,6 +18,12 @@ const routes = {
     tokens: [{"old":"/api/v1/auth/login","type":0,"val":"api","end":""},{"old":"/api/v1/auth/login","type":0,"val":"v1","end":""},{"old":"/api/v1/auth/login","type":0,"val":"auth","end":""},{"old":"/api/v1/auth/login","type":0,"val":"login","end":""}],
     types: placeholder as Registry['auth.login']['types'],
   },
+  'auth.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/auth/users',
+    tokens: [{"old":"/api/v1/auth/users","type":0,"val":"api","end":""},{"old":"/api/v1/auth/users","type":0,"val":"v1","end":""},{"old":"/api/v1/auth/users","type":0,"val":"auth","end":""},{"old":"/api/v1/auth/users","type":0,"val":"users","end":""}],
+    types: placeholder as Registry['auth.index']['types'],
+  },
   'auth.show': {
     methods: ["GET","HEAD"],
     pattern: '/api/v1/auth/profile',

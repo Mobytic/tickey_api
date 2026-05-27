@@ -15,6 +15,7 @@ router.group(() => {
 
   router.group(() => {
     router.group(() => {
+      router.get('users', [AuthController, 'index'])
       router.get('profile', [AuthController, 'show'])
       router.post('logout', [AuthController, 'logout'])
       router.patch('update/:id', [AuthController, 'update'])
