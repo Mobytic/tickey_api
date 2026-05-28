@@ -8,6 +8,11 @@ export const registerValidator = vine.create(
     password: vine.string().minLength(8),
     companyName: vine.string().optional(),
     passwordConfirmation: vine.string().sameAs('password'),
+    urls: vine.array(
+      vine.object({
+        url: vine.string().url(),
+      })
+    ).optional()
   })
 )
 

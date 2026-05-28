@@ -13,7 +13,7 @@ export default class AuthController {
   */
   public async index({ response }: HttpContext) {
 
-    const users = await User.all()
+    const users = await User.query().preload('websites')
 
     return response.ok(users)
   }
@@ -22,22 +22,36 @@ export default class AuthController {
    * New user registration
    */
   async register({ request, response }: HttpContext) {
-
     const payload = await request.validateUsing(registerValidator)
-    const user = await User.create({
-      firstname: payload.firstname,
-      lastname: payload.lastname,
-      mail: payload.mail,
-      password: payload.password,
-      companyName: payload.companyName,
-    })
-    const token = await User.accessTokens.create(user)
+    const transaction = await db.transaction()
+    try {
+      const user = new User()
+      user.fill({
+        firstname: payload.firstname,
+        lastname: payload.lastname,
+        mail: payload.mail,
+        password: payload.password,
+        companyName: payload.companyName,
+      })
+      user.useTransaction(transaction)
+      await user.save()
+      if (payload.urls && payload.urls.length > 0) {
+        await user.related('websites').createMany(payload.urls)
+      }
+      await transaction.commit()
+      const token = await User.accessTokens.create(user)
+      await user.load('websites')
 
-    return response.created({
-      message: 'Inscription réussie',
-      user: user,
-      token: token.value!.release(),
-    })
+      return response.created({
+        message: 'Inscription réussie',
+        user: user,
+        token: token.value!.release(),
+      })
+
+    } catch (error) {
+      await transaction.rollback()
+      return response.internalServerError({ message: "Erreur lors de la création" })
+    }
   }
 
 
