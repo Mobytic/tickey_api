@@ -94,10 +94,14 @@ export default class AuthController {
   */
   async update({ params, request, response }: HttpContext) {
 
-    const payload = await request.validateUsing(updateValidator)
+    const payload = await request.validateUsing(updateValidator, {
+      meta: {
+        userId: Number(params.id)
+      }
+    })
     const user = await User.findOrFail(params.id)
     const transaction = await db.transaction()
-    user.$trx = transaction
+    user.useTransaction(transaction)
     console.log(payload)
     try {
       user.merge({
@@ -120,9 +124,11 @@ export default class AuthController {
         await user.related('websites').updateOrCreateMany(payload.urls)
       }
       await transaction.commit()
-      const updatedUser = await User.query().preload("websites")
-      return response.ok({ message: "Client et sites mis à jour avec succès !", updatedUser })
-
+      await user.load("websites")
+      return response.ok({ 
+        message: "Client et sites mis à jour avec succès !", 
+        updatedUser: user 
+      })
     } catch (error) {
       await transaction.rollback()
 
