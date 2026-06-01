@@ -53,12 +53,12 @@ export class NametagSchema extends BaseModel {
 }
 
 export class TicketTagSchema extends BaseModel {
-  static $columns = ['id', 'tagId', 'ticketId'] as const
+  static $columns = ['id', 'nametagId', 'ticketId'] as const
   $columns = TicketTagSchema.$columns
   @column({ isPrimary: true })
   declare id: number
   @column()
-  declare tagId: number | null
+  declare nametagId: number | null
   @column()
   declare ticketId: number | null
 }

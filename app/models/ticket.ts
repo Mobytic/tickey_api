@@ -43,7 +43,9 @@ export default class Ticket extends BaseModel {
     @column()
     declare ticketStatusId: number
 
-    @belongsTo(() => TicketsStatus)
+    @belongsTo(() => TicketsStatus, {
+        foreignKey: 'ticketStatusId',
+    })
     declare status: relations.BelongsTo<typeof TicketsStatus>
 
     @column()
@@ -53,7 +55,7 @@ export default class Ticket extends BaseModel {
     declare category: relations.BelongsTo<typeof Category>
 
     @manyToMany(() => Nametag, {
-        pivotTable: 'ticket_tag', 
+        pivotTable: 'ticket_tags', 
         pivotForeignKey: 'ticket_id',
         pivotRelatedForeignKey: 'nametag_id'})
     declare nametags: relations.ManyToMany<typeof Nametag>

@@ -15,10 +15,10 @@ export default class extends BaseSchema {
         .onDelete('CASCADE')
 
       table
-        .integer('tag_id')
+        .integer('nametag_id')
         .unsigned()
         .references('id')
-        .inTable('tags')
+        .inTable('nametags')
         .onDelete('CASCADE')
     })
   }
