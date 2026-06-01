@@ -21,7 +21,7 @@ export default class TicketsController {
             .preload('nametags')
             .orderBy('createdAt', 'desc')
 
-        return response.ok({ tickets })
+        return response.ok(tickets)
     }
 
     /**
@@ -87,7 +87,7 @@ export default class TicketsController {
         if (currentUser.role === 'admin') {
             if (payload.teamComment !== undefined) dataToUpdate.teamComment = payload.teamComment
             if (payload.mailComment !== undefined) dataToUpdate.mailComment = payload.mailComment
-            if (payload.statusId !== undefined) dataToUpdate.statusId = payload.statusId
+            if (payload.statusId !== undefined) dataToUpdate.ticketStatusId = payload.statusId
             if (payload.categoryId !== undefined) dataToUpdate.categoryId = payload.categoryId
         }
 
@@ -97,7 +97,10 @@ export default class TicketsController {
         if (payload.nametagIds !== undefined) {
             await ticket.related('nametags').sync(payload.nametagIds)
         }
-
+        
+        await ticket.load('category')
+        await ticket.load('status')
+        await ticket.load('nametags')
 
         return response.ok({
             message: 'Ticket mis à jour avec succès !',
