@@ -64,7 +64,7 @@ export class TicketTagSchema extends BaseModel {
 }
 
 export class TicketSchema extends BaseModel {
-  static $columns = ['archivedAt', 'bugLink', 'categoryId', 'clientComment', 'createdAt', 'id', 'mailComment', 'teamComment', 'ticketStatusId', 'title', 'updatedAt', 'userId'] as const
+  static $columns = ['archivedAt', 'bugLink', 'categoryId', 'clientComment', 'createdAt', 'id', 'mailComment', 'teamComment', 'ticketStatusId', 'title', 'updatedAt', 'userId', 'websiteId'] as const
   $columns = TicketSchema.$columns
   @column.dateTime()
   declare archivedAt: DateTime | null
@@ -90,6 +90,8 @@ export class TicketSchema extends BaseModel {
   declare updatedAt: DateTime | null
   @column()
   declare userId: number | null
+  @column()
+  declare websiteId: number | null
 }
 
 export class TicketsStatusSchema extends BaseModel {

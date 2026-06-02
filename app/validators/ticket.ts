@@ -7,7 +7,8 @@ export const createValidator = vine.create(
     bugLink: vine.string().trim(),
     teamComment: vine.string().optional(),
     mailComment: vine.string().optional(),
-    categoryId: vine.number(),
+    categoryId: vine.number().exists({ table: 'categories', column: 'id' }),
+    websiteId: vine.number().exists({ table: 'websites', column: 'id' }),
   })
 )
 
@@ -19,7 +20,8 @@ export const updateValidator = vine.create(
     teamComment: vine.string().optional(),
     mailComment: vine.string().optional(),
     statusId: vine.number().optional(),
-    categoryId: vine.number().optional(),
-    nametagIds: vine.array(vine.number()).optional()
+    categoryId: vine.number().exists({ table: 'categories', column: 'id' }).optional(),
+    websiteId: vine.number().exists({ table: 'websites', column: 'id' }).optional(), 
+    nametagIds: vine.array(vine.number()).optional(),
   })
 )

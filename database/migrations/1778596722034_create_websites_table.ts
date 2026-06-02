@@ -14,6 +14,7 @@ export default class extends BaseSchema {
            .inTable('users')
            .onDelete('CASCADE')
 
+
     })
   }
 

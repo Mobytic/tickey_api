@@ -5,6 +5,7 @@ import * as relations from '@adonisjs/lucid/types/relations'
 import Nametag from './nametag.js'
 import TicketsStatus from './tickets_status.js'
 import Category from './category.js'
+import Website from './website.ts'
 
 export default class Ticket extends BaseModel {
     @column({ isPrimary: true })
@@ -31,7 +32,7 @@ export default class Ticket extends BaseModel {
     @column.dateTime({ autoUpdate: true })
     declare updatedAt: DateTime
 
-    @column.dateTime({ autoUpdate: true })
+    @column.dateTime()
     declare archivedAt: DateTime
 
     @column()
@@ -53,6 +54,12 @@ export default class Ticket extends BaseModel {
 
     @belongsTo(() => Category)
     declare category: relations.BelongsTo<typeof Category>
+
+    @column()
+    declare websiteId: number | null
+
+    @belongsTo(() => Website)
+    declare website: relations.BelongsTo<typeof Website>
 
     @manyToMany(() => Nametag, {
         pivotTable: 'ticket_tags', 

@@ -17,6 +17,8 @@ export default class TicketsController {
         
         const tickets = await ticketQuery
             .preload('status')
+            .preload('user')
+            .preload('website')
             .preload('category')
             .preload('nametags')
             .orderBy('createdAt', 'desc')
@@ -37,6 +39,7 @@ export default class TicketsController {
             title: payload.title,
             clientComment: payload.clientComment,
             bugLink: payload.bugLink,
+            websiteId: payload.websiteId,
             teamComment: currentUser.role === 'admin' ? payload.teamComment : undefined,
             mailComment: currentUser.role === 'admin' ? payload.mailComment : undefined,
             categoryId: payload.categoryId,
@@ -55,6 +58,8 @@ export default class TicketsController {
         const ticket = await Ticket.query()
             .where('id', params.id)
             .preload('status')
+            .preload('user')
+            .preload('website')
             .preload('category')
             .preload('nametags')
             .firstOrFail()
@@ -84,11 +89,12 @@ export default class TicketsController {
         if (payload.title !== undefined) dataToUpdate.title = payload.title
         if (payload.clientComment !== undefined) dataToUpdate.clientComment = payload.clientComment
         if (payload.bugLink !== undefined) dataToUpdate.bugLink = payload.bugLink
+        if (payload.websiteId !== undefined) dataToUpdate.websiteId = payload.websiteId
+        if (payload.categoryId !== undefined) dataToUpdate.categoryId = payload.categoryId
         if (currentUser.role === 'admin') {
             if (payload.teamComment !== undefined) dataToUpdate.teamComment = payload.teamComment
             if (payload.mailComment !== undefined) dataToUpdate.mailComment = payload.mailComment
             if (payload.statusId !== undefined) dataToUpdate.ticketStatusId = payload.statusId
-            if (payload.categoryId !== undefined) dataToUpdate.categoryId = payload.categoryId
         }
 
         ticket.merge(dataToUpdate)
