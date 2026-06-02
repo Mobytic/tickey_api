@@ -42,6 +42,12 @@ const routes = {
     tokens: [{"old":"/api/v1/auth/update/:id","type":0,"val":"api","end":""},{"old":"/api/v1/auth/update/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/auth/update/:id","type":0,"val":"auth","end":""},{"old":"/api/v1/auth/update/:id","type":0,"val":"update","end":""},{"old":"/api/v1/auth/update/:id","type":1,"val":"id","end":""}],
     types: placeholder as Registry['auth.update']['types'],
   },
+  'auth.website_index': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/auth/websites',
+    tokens: [{"old":"/api/v1/auth/websites","type":0,"val":"api","end":""},{"old":"/api/v1/auth/websites","type":0,"val":"v1","end":""},{"old":"/api/v1/auth/websites","type":0,"val":"auth","end":""},{"old":"/api/v1/auth/websites","type":0,"val":"websites","end":""}],
+    types: placeholder as Registry['auth.website_index']['types'],
+  },
   'tickets.index': {
     methods: ["GET","HEAD"],
     pattern: '/api/v1/tickets',

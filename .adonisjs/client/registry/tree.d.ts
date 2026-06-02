@@ -9,6 +9,7 @@ export interface ApiDefinition {
     show: typeof routes['auth.show']
     logout: typeof routes['auth.logout']
     update: typeof routes['auth.update']
+    websiteIndex: typeof routes['auth.website_index']
   }
   tickets: {
     index: typeof routes['tickets.index']

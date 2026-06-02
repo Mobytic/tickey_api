@@ -8,7 +8,7 @@ export const createValidator = vine.create(
     teamComment: vine.string().optional(),
     mailComment: vine.string().optional(),
     categoryId: vine.number().exists({ table: 'categories', column: 'id' }),
-    websiteId: vine.number().exists({ table: 'websites', column: 'id' }),
+    websiteId: vine.number().exists({ table: 'websites', column: 'id' }).optional(),
   })
 )
 

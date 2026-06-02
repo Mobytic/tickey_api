@@ -1,7 +1,7 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import User from '#models/user'
-import { registerValidator, updateValidator } from '#validators/auth'
-import { loginValidator } from '#validators/auth'
+import Website from '#models/website'
+import { registerValidator, updateValidator, loginValidator } from '#validators/auth'
 import db from '@adonisjs/lucid/services/db'
 
 
@@ -17,6 +17,17 @@ export default class AuthController {
 
     return response.ok(users)
   }
+
+  /**
+  * Websites index
+  */
+  public async websiteIndex({ response }: HttpContext) {
+
+    const websites = await Website.all()
+
+    return response.ok(websites)
+  }
+
 
   /**
    * New user registration

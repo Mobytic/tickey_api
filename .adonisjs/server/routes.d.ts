@@ -10,6 +10,7 @@ export type ScannedRoutes = {
     'auth.show': { paramsTuple?: []; params?: {} }
     'auth.logout': { paramsTuple?: []; params?: {} }
     'auth.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'auth.website_index': { paramsTuple?: []; params?: {} }
     'tickets.index': { paramsTuple?: []; params?: {} }
     'tickets.create': { paramsTuple?: []; params?: {} }
     'tickets.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -39,6 +40,7 @@ export type ScannedRoutes = {
   GET: {
     'auth.index': { paramsTuple?: []; params?: {} }
     'auth.show': { paramsTuple?: []; params?: {} }
+    'auth.website_index': { paramsTuple?: []; params?: {} }
     'tickets.index': { paramsTuple?: []; params?: {} }
     'tickets.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'categories.index': { paramsTuple?: []; params?: {} }
@@ -48,6 +50,7 @@ export type ScannedRoutes = {
   HEAD: {
     'auth.index': { paramsTuple?: []; params?: {} }
     'auth.show': { paramsTuple?: []; params?: {} }
+    'auth.website_index': { paramsTuple?: []; params?: {} }
     'tickets.index': { paramsTuple?: []; params?: {} }
     'tickets.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'categories.index': { paramsTuple?: []; params?: {} }

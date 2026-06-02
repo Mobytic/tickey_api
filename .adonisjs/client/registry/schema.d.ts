@@ -79,6 +79,18 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'auth.website_index': {
+    methods: ["GET","HEAD"]
+    pattern: '/api/v1/auth/websites'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
   'tickets.index': {
     methods: ["GET","HEAD"]
     pattern: '/api/v1/tickets'
