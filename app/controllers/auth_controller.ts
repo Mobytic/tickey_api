@@ -43,6 +43,8 @@ export default class AuthController {
         mail: payload.mail,
         password: payload.password,
         companyName: payload.companyName,
+        tel: payload.tel,
+        drivePath: payload.drivePath,
       })
       user.useTransaction(transaction)
       await user.save()
@@ -82,7 +84,10 @@ export default class AuthController {
           lastname: user?.lastname,
           companyName: user?.companyName,
           mail: user.mail,
+          tel: user.tel,
           role: user.role,
+          websites: user.websites,
+          drivePath: user.drivePath,
         }
       })
 
@@ -135,6 +140,8 @@ export default class AuthController {
         mail: payload.mail,
         password: payload.password,
         companyName: payload.companyName,
+        tel: payload.tel,
+        drivePath: payload.drivePath,
       })
       await user.save()
       if (payload.urls) {

@@ -8,6 +8,8 @@ export const registerValidator = vine.create(
     password: vine.string().minLength(8),
     companyName: vine.string().optional(),
     passwordConfirmation: vine.string().sameAs('password'),
+    tel: vine.string().optional(),
+    drivePath: vine.string().optional(),
     urls: vine.array(
       vine.object({
         url: vine.string().url(),
@@ -35,6 +37,8 @@ export const updateValidator = vine.withMetaData<{ userId: number }>().create(
     }).optional(),
     password: vine.string().minLength(8).optional(),
     companyName: vine.string().optional(),
+    tel: vine.string().optional(),
+    drivePath: vine.string().optional(),
     passwordConfirmation: vine.string().sameAs('password').optional(),
     urls: vine.array(
       vine.object({
