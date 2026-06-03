@@ -77,9 +77,11 @@ export default class AuthController {
     try {
       const user = await User.verifyCredentials(mail, password)
       const token = await User.accessTokens.create(user)
+      await user.load('websites')
       return response.ok({
         token: token.value!.release(),
         user: {
+          id: user.id,
           firstname: user?.firstname,
           lastname: user?.lastname,
           companyName: user?.companyName,
@@ -116,7 +118,11 @@ export default class AuthController {
   * User page
   */
   async show({ auth, response }: HttpContext) {
-    return response.ok(auth.user)
+
+    const user = auth.user as User
+    await user.load('websites') 
+
+    return response.ok(user)
   }
 
   /**
