@@ -3,6 +3,7 @@ import User from '#models/user'
 import Website from '#models/website'
 import { registerValidator, updateValidator, loginValidator } from '#validators/auth'
 import db from '@adonisjs/lucid/services/db'
+import { url } from 'node:inspector'
 
 
 export default class AuthController {
@@ -151,16 +152,38 @@ export default class AuthController {
       })
       await user.save()
       if (payload.urls) {
-        const activeIds = payload.urls
-          .map((item) => item.id)
-          .filter((id) => id !== undefined) as number[]
+
+        const existingUrls = payload.urls.filter(
+          (item) => item.id !== null && item.id !== undefined
+        )
+        const activeIds = existingUrls.map((item) => item.id as number)
+
+        const newUrls = payload.urls
+          .filter((item) => item.id === null || item.id === undefined)
+          .map((item) => ({
+            url: item.url
+          }))
+
+
         if (activeIds.length > 0) {
           await user.related('websites').query().whereNotIn('id', activeIds).delete()
         } else {
           await user.related('websites').query().delete()
         }
-        await user.related('websites').updateOrCreateMany(payload.urls)
+
+        if (existingUrls.length > 0) {
+          await user.related('websites').updateOrCreateMany(existingUrls, 'id')
+        }
+
+        if (newUrls.length > 0) {
+          await user.related('websites').createMany(newUrls)
+        }
       }
+
+      if (user.$dirty) {
+        await user.save()
+      }
+      
       await transaction.commit()
       await user.load("websites")
       return response.ok({ 
