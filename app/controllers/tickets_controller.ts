@@ -1,6 +1,9 @@
 import Ticket from '#models/ticket'
 import { createValidator, updateValidator } from '#validators/ticket'
 import type { HttpContext } from '@adonisjs/core/http'
+import mail from '@adonisjs/mail/services/main'
+import TicketCreatedClient from '#mails/ticket_created_client_notification'
+import TicketCreatedAgency from '#mails/ticket_created_agency_notification'
 
 export default class TicketsController {
 
@@ -44,6 +47,9 @@ export default class TicketsController {
             mailComment: currentUser.role === 'admin' ? payload.mailComment : undefined,
             categoryId: payload.categoryId,
     })
+        await ticket.load('user')
+        await mail.sendLater(new TicketCreatedClient(ticket))
+        await mail.sendLater(new TicketCreatedAgency(ticket))
         
         return response.created({
             message: "Ticket créé et envoyé à l'équipe Mobytic ! :)",
