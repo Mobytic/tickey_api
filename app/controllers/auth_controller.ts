@@ -4,6 +4,10 @@ import Website from '#models/website'
 import { registerValidator, updateValidator, loginValidator } from '#validators/auth'
 import db from '@adonisjs/lucid/services/db'
 import { url } from 'node:inspector'
+import encryption from '@adonisjs/core/services/encryption'
+import { DateTime } from 'luxon'
+import mail from '@adonisjs/mail/services/main'
+import ForgotPasswordNotification from '#mails/forgot_password_notification'
 
 
 export default class AuthController {
@@ -195,6 +199,79 @@ export default class AuthController {
 
       return response.internalServerError({
         message: "Erreur de modification",
+        error: error instanceof Error ? error.message : "Erreur inconnue"
+      })
+    }
+  }
+
+  /**
+   * user password forgotten
+   */
+  async forgotPassword({ request, response }: HttpContext) {
+    const mailAddress = request.input('mail')
+
+    if (!mailAddress) {
+      return response.badRequest({ message: "L'adresse e-mail est requise." })
+    }
+
+    const user = await User.findBy('mail', mailAddress)
+
+    if (!user) {
+      return response.ok({ 
+        message: "Si cette adresse existe, un e-mail de réinitialisation vous a été envoyé." 
+      })
+    }
+
+    const payload = {
+      userId: user.id,
+      expiresAt: DateTime.now().plus({ minutes: 20 }).toISO()
+    }
+
+    const token = encryption.encrypt(payload)
+
+    // URL de ton application React (A adapte selon ton vrai port/domaine de dev ou prod)
+    // Le token est injecté dans les paramètres de l'URL pour que React puisse le lire
+    const frontendUrl = `http://localhost:5173/reset-password?token=${encodeURIComponent(token)}`
+
+    await mail.sendLater(new ForgotPasswordNotification(user, frontendUrl))
+
+    return response.ok({ 
+      message: "Si cette adresse existe, un e-mail de réinitialisation vous a été envoyé." 
+    })
+  }
+
+  /**
+   * User reset Password
+   */
+  async resetPassword({ request, response }: HttpContext) {
+    const token = request.input('token')
+    const newPassword = request.input('password')
+
+    if (!token || !newPassword) {
+      return response.badRequest({ message: "Données incomplètes (token ou mot de passe manquant)." })
+    }
+
+    try {
+      const decrypted = encryption.decrypt<{ userId: number, expiresAt: string }>(token)
+      if (!decrypted) {
+        return response.badRequest({ message: "Le lien de réinitialisation est invalide ou corrompu." })
+      }
+
+      const expiresAt = DateTime.fromISO(decrypted.expiresAt)
+      if (DateTime.now() > expiresAt) {
+        return response.badRequest({ message: "Le lien de réinitialisation a expiré (maximum 20 minutes)." })
+      }
+
+      const user = await User.findOrFail(decrypted.userId)
+      user.password = newPassword 
+      
+      await user.save()
+
+      return response.ok({ message: "Votre mot de passe a été réinitialisé avec succès !" })
+
+    } catch (error) {
+      return response.internalServerError({ 
+        message: "Une erreur est survenue lors de la réinitialisation.",
         error: error instanceof Error ? error.message : "Erreur inconnue"
       })
     }

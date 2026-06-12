@@ -5,29 +5,14 @@ import router from '@adonisjs/core/services/router'
 import CategoriesController from '#controllers/categories_controller'
 import TicketStatusesController from '#controllers/ticket_statuses_controller'
 import NametagsController from '#controllers/nametags_controller'
-import mail from '@adonisjs/mail/services/main'
-import TicketCreatedClient from '#mails/ticket_created_client_notification'
-import TicketCreatedAgency from '#mails/ticket_created_agency_notification'
+
 
 router.group(() => {
   router.group(() => {
     router.post('register', [AuthController, 'register'])
     router.post('login', [AuthController, 'login'])
-    router.get('test-mail', async ({ response }) => {
-        // On invente un faux ticket avec une fausse relation "user"
-        const fakeTicket = {
-            title: 'Test technique depuis Postman',
-            user: {
-                mail: 'test@mobytic.com' // METS TA VRAIE ADRESSE ICI !
-            }
-        } as any
-
-        // On envoie les deux mails en direct (pas de sendLater, on veut voir si ça plante tout de suite)
-        await mail.send(new TicketCreatedClient(fakeTicket))
-        await mail.send(new TicketCreatedAgency(fakeTicket))
-
-        return response.ok('Les deux mails de test sont partis !')
-    })
+    router.post('forgot-password', [AuthController, 'forgotPassword'])
+    router.post('reset-password', [AuthController, 'resetPassword'])
   }).prefix('auth')
 
   router.group(() => {

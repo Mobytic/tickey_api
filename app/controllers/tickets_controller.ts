@@ -4,6 +4,7 @@ import type { HttpContext } from '@adonisjs/core/http'
 import mail from '@adonisjs/mail/services/main'
 import TicketCreatedClient from '#mails/ticket_created_client_notification'
 import TicketCreatedAgency from '#mails/ticket_created_agency_notification'
+import TicketClosedClient from '#mails/ticket_closed_client_notification'
 
 export default class TicketsController {
 
@@ -48,6 +49,8 @@ export default class TicketsController {
             categoryId: payload.categoryId,
     })
         await ticket.load('user')
+        await ticket.load('category')
+        await ticket.load('website')
         await mail.sendLater(new TicketCreatedClient(ticket))
         await mail.sendLater(new TicketCreatedAgency(ticket))
         
@@ -104,7 +107,17 @@ export default class TicketsController {
         }
 
         ticket.merge(dataToUpdate)
+        const doneStatusId = 4
+
+        const shouldSendResolutionMail = ticket.$dirty.ticketStatusId === doneStatusId
+
         await ticket.save()
+
+        if (shouldSendResolutionMail) {
+            await ticket.load('user')
+            await ticket.load('website')
+            await mail.sendLater(new TicketClosedClient(ticket))
+        }
 
         if (payload.nametagIds !== undefined) {
             await ticket.related('nametags').sync(payload.nametagIds)

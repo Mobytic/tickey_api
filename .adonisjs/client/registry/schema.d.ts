@@ -31,6 +31,30 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'auth.forgot_password': {
+    methods: ["POST"]
+    pattern: '/api/v1/auth/forgot-password'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
+  'auth.reset_password': {
+    methods: ["POST"]
+    pattern: '/api/v1/auth/reset-password'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
   'auth.index': {
     methods: ["GET","HEAD"]
     pattern: '/api/v1/auth/users'

@@ -1,10 +1,10 @@
 import { BaseMail } from '@adonisjs/mail'
 import Ticket from '#models/ticket' 
 
-export default class TicketCreatedAgency extends BaseMail {
+export default class TicketClosedClient extends BaseMail {
 
     from = 'test@mobytic.com' 
-    subject = 'Tickey : Un nouveau ticket a été créé'
+    subject = 'Tickey : Votre ticket a été traité !'
 
     constructor(public ticket: Ticket) {
         super()
@@ -12,6 +12,6 @@ export default class TicketCreatedAgency extends BaseMail {
 
     prepare() {
         this.message.to("test@mobytic.com")
-        .htmlView('emails/ticket_created_agency', { ticket: this.ticket }) 
+        .htmlView('emails/ticket_closed', { ticket: this.ticket }) 
     }
 }

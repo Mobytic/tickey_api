@@ -6,6 +6,8 @@ export type ScannedRoutes = {
   ALL: {
     'auth.register': { paramsTuple?: []; params?: {} }
     'auth.login': { paramsTuple?: []; params?: {} }
+    'auth.forgot_password': { paramsTuple?: []; params?: {} }
+    'auth.reset_password': { paramsTuple?: []; params?: {} }
     'auth.index': { paramsTuple?: []; params?: {} }
     'auth.show': { paramsTuple?: []; params?: {} }
     'auth.logout': { paramsTuple?: []; params?: {} }
@@ -31,6 +33,8 @@ export type ScannedRoutes = {
   POST: {
     'auth.register': { paramsTuple?: []; params?: {} }
     'auth.login': { paramsTuple?: []; params?: {} }
+    'auth.forgot_password': { paramsTuple?: []; params?: {} }
+    'auth.reset_password': { paramsTuple?: []; params?: {} }
     'auth.logout': { paramsTuple?: []; params?: {} }
     'tickets.create': { paramsTuple?: []; params?: {} }
     'categories.create': { paramsTuple?: []; params?: {} }
