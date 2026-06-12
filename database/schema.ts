@@ -32,19 +32,115 @@ export class AuthAccessTokenSchema extends BaseModel {
   declare updatedAt: DateTime | null
 }
 
-export class UserSchema extends BaseModel {
-  static $columns = ['createdAt', 'email', 'fullName', 'id', 'password', 'updatedAt'] as const
-  $columns = UserSchema.$columns
-  @column.dateTime({ autoCreate: true })
-  declare createdAt: DateTime
-  @column()
-  declare email: string
-  @column()
-  declare fullName: string | null
+export class CategorySchema extends BaseModel {
+  static $columns = ['id', 'name'] as const
+  $columns = CategorySchema.$columns
   @column({ isPrimary: true })
   declare id: number
-  @column({ serializeAs: null })
-  declare password: string
+  @column()
+  declare name: string
+}
+
+export class NametagSchema extends BaseModel {
+  static $columns = ['color', 'id', 'name'] as const
+  $columns = NametagSchema.$columns
+  @column()
+  declare color: string | null
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare name: string
+}
+
+export class TicketTagSchema extends BaseModel {
+  static $columns = ['id', 'nametagId', 'ticketId'] as const
+  $columns = TicketTagSchema.$columns
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare nametagId: number | null
+  @column()
+  declare ticketId: number | null
+}
+
+export class TicketSchema extends BaseModel {
+  static $columns = ['archivedAt', 'bugLink', 'categoryId', 'clientComment', 'createdAt', 'id', 'mailComment', 'teamComment', 'ticketStatusId', 'title', 'updatedAt', 'userId', 'websiteId'] as const
+  $columns = TicketSchema.$columns
+  @column.dateTime()
+  declare archivedAt: DateTime | null
+  @column()
+  declare bugLink: string
+  @column()
+  declare categoryId: number | null
+  @column()
+  declare clientComment: string
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare mailComment: string | null
+  @column()
+  declare teamComment: string | null
+  @column()
+  declare ticketStatusId: number | null
+  @column()
+  declare title: string
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
+  @column()
+  declare userId: number | null
+  @column()
+  declare websiteId: number | null
+}
+
+export class TicketsStatusSchema extends BaseModel {
+  static $columns = ['id', 'name'] as const
+  $columns = TicketsStatusSchema.$columns
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare name: string
+}
+
+export class UserSchema extends BaseModel {
+  static $columns = ['companyName', 'createdAt', 'deletedAt', 'drivePath', 'firstname', 'id', 'lastname', 'mail', 'password', 'role', 'session', 'tel', 'updatedAt'] as const
+  $columns = UserSchema.$columns
+  @column()
+  declare companyName: string | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column.dateTime()
+  declare deletedAt: DateTime | null
+  @column()
+  declare drivePath: string | null
+  @column()
+  declare firstname: string | null
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare lastname: string | null
+  @column()
+  declare mail: string
+  @column({ serializeAs: null })
+  declare password: string
+  @column()
+  declare role: string | null
+  @column()
+  declare session: string | null
+  @column()
+  declare tel: string | null
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class WebsiteSchema extends BaseModel {
+  static $columns = ['id', 'url', 'userId'] as const
+  $columns = WebsiteSchema.$columns
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare url: string
+  @column()
+  declare userId: number | null
 }

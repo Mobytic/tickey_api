@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+    <h1>Nouveau ticket !</h1>
+    <p>Bonjour l'équipe !</p>
+    
+    <p>Un nouveau ticket vient d'être créé par {{ ticket.user.firstname }} {{ ticket.user.lastname }} pour le site <strong>{{ ticket.website.url }}</strong> le {{ ticket.createdAt.toFormat('dd/MM/yyyy à HH:mm') }}</p>
+    
+    <p><strong>Titre :</strong> {{ ticket.title }}</p>
+    <p><strong>Catégorie :</strong> {{ ticket.category.name }}</p>
+    <p><strong>Description :</strong> {{ ticket.clientComment }}</p>
+    
+    <p>Tu peux te connecter sur ton application Tickey pour plus d'informations : <a href="https://www.tickey.mobytic.fr">Aller sur Tickey</a></p>
+    <p>Bon courage et bonne journée à tous !</p>
+    <p>Tickey</p>
+</body>
+</html>

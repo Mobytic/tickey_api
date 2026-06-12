@@ -4,7 +4,9 @@
  */
 
 export const controllers = {
-  AccessTokens: () => import('#controllers/access_tokens_controller'),
-  NewAccount: () => import('#controllers/new_account_controller'),
-  Profile: () => import('#controllers/profile_controller'),
+  Auth: () => import('#controllers/auth_controller'),
+  Categories: () => import('#controllers/categories_controller'),
+  Nametags: () => import('#controllers/nametags_controller'),
+  TicketStatuses: () => import('#controllers/ticket_statuses_controller'),
+  Tickets: () => import('#controllers/tickets_controller'),
 }
