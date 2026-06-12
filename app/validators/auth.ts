@@ -31,7 +31,7 @@ export const updateValidator = vine.withMetaData<{ userId: number }>().create(
     mail: vine.string().email().unique({ 
       table: 'users', 
       column: 'mail',
-      filter: (db, value, field) => {
+      filter: (db, _, field) => {
         db.whereNot('id', field.meta.userId)
       }
     }).optional(),
