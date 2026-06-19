@@ -22,6 +22,7 @@ router.group(() => {
       router.post('logout', [AuthController, 'logout'])
       router.patch('update/:id', [AuthController, 'update'])
       router.get('websites', [AuthController, 'websiteIndex'])
+      router.delete(':id', [AuthController, 'delete'])
     }).prefix('auth')
 
     router.group(() => {

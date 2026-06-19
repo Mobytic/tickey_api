@@ -1,20 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="utf-8">
 </head>
-<body>
-    <h1>Nouveau ticket !</h1>
-    <p>Bonjour l'équipe !</p>
-    
-    <p>Un nouveau ticket vient d'être créé par {{ ticket.user.firstname }} {{ ticket.user.lastname }} pour le site <strong>{{ ticket.website.url }}</strong> le {{ ticket.createdAt.toFormat('dd/MM/yyyy à HH:mm') }}</p>
-    
-    <p><strong>Titre :</strong> {{ ticket.title }}</p>
-    <p><strong>Catégorie :</strong> {{ ticket.category.name }}</p>
-    <p><strong>Description :</strong> {{ ticket.clientComment }}</p>
-    
-    <p>Tu peux te connecter sur ton application Tickey pour plus d'informations : <a href="https://www.tickey.mobytic.fr">Aller sur Tickey</a></p>
-    <p>Bon courage et bonne journée à tous !</p>
-    <p>Tickey</p>
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f5; margin: 0; padding: 40px 20px; color: #3f3f46;">
+
+    <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 32px; border-radius: 8px; border: 1px solid #e4e4e7; border-top: 4px solid #ef4444; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+
+        <div style="text-align: center; margin-bottom: 24px;">
+            <span style="background-color: #fee2e2; color: #b91c1c; padding: 4px 12px; border-radius: 9999px; font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em;">Notification Interne</span>
+        </div>
+
+        <h1 style="color: #18181b; font-size: 24px; margin-top: 0; margin-bottom: 16px; text-align: center;">Nouveau ticket ! 🚀</h1>
+
+        <p style="font-size: 16px; line-height: 1.6; margin-bottom: 24px;">Bonjour l'équipe,</p>
+
+        <p style="font-size: 16px; line-height: 1.6; margin-bottom: 24px;">
+            Un nouveau ticket vient d'être créé par <strong>{{ ticket.user.firstname }} {{ ticket.user.lastname }}</strong> pour le site <a href="{{ ticket.website.url }}" style="color: #4f46e5; text-decoration: none;"><strong>{{ ticket.website.url }}</strong></a> le {{ ticket.createdAt.toFormat('dd/MM/yyyy à HH:mm') }}.
+        </p>
+
+        <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 20px; margin-bottom: 32px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="font-size: 15px; line-height: 1.6;">
+                <tr>
+                    <td width="25%" style="color: #64748b; padding-bottom: 12px; vertical-align: top;"><strong>Titre :</strong></td>
+                    <td width="75%" style="color: #0f172a; padding-bottom: 12px; font-weight: 500;">{{ ticket.title }}</td>
+                </tr>
+                <tr>
+                    <td style="color: #64748b; padding-bottom: 12px; vertical-align: top;"><strong>Catégorie :</strong></td>
+                    <td style="color: #0f172a; padding-bottom: 12px;">
+                        <span style="background-color: #e0f2fe; color: #0369a1; padding: 3px 8px; border-radius: 4px; font-size: 13px; font-weight: 500;">{{ ticket.category.name }}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="color: #64748b; vertical-align: top;"><strong>Description :</strong></td>
+                    <td style="color: #334155; font-style: italic; background-color: #ffffff; padding: 10px; border-radius: 4px; border: 1px dashed #cbd5e1;">"{{ ticket.clientComment }}"</td>
+                </tr>
+            </table>
+        </div>
+
+        <div style="text-align: center; margin-bottom: 32px;">
+            <a href="https://www.tickey.mobytic.fr" style="background-color: #4f46e5; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block; box-shadow: 0 2px 4px rgba(79, 70, 229, 0.3);">Traiter le ticket sur Tickey</a>
+        </div>
+
+        <p style="font-size: 16px; margin-bottom: 8px;">Bon courage et bonne journée à tous !</p>
+        <p style="font-size: 16px; font-weight: bold; color: #18181b; margin-top: 0;">L'application Tickey</p>
+
+    </div>
 </body>
 </html>

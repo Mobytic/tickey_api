@@ -1,14 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="utf-8">
 </head>
-<body>
-    <h1>Bonjour,</h1>
-    <p>Nous avons bien reçu votre ticket concernant : "{{ ticket.title }}".</p>
-    <p>Notre équipe va s'en charger au plus vite.</p>
-    <p>Vous pouvez à tout moment consulter le statut de votre ticket depuis la liste de vos tickets.<p>
-    <p>A très beintôt !</p>
-    <p>L'équipe Mobytic</p>
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f5; margin: 0; padding: 40px 20px; color: #3f3f46;">
+    
+    <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 32px; border-radius: 8px; border: 1px solid #e4e4e7; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+        
+        <h1 style="color: #18181b; font-size: 24px; margin-top: 0; margin-bottom: 24px;">Bonjour,</h1>
+        
+        <p style="font-size: 16px; line-height: 1.6; margin-bottom: 16px;">
+            Nous avons bien reçu votre ticket concernant : <br>
+            <strong style="color: #4f46e5; display: inline-block; margin-top: 8px;">"{{ ticket.title }}"</strong>.
+        </p>
+        
+        <p style="font-size: 16px; line-height: 1.6; margin-bottom: 32px;">Notre équipe va s'en charger au plus vite.</p>
+        
+        <div style="background-color: #f8fafc; border-left: 4px solid #3b82f6; padding: 16px; margin-bottom: 32px; border-radius: 0 4px 4px 0;">
+            <p style="font-size: 14px; line-height: 1.5; margin: 0; color: #475569;">
+                Vous pouvez à tout moment consulter le statut de votre ticket depuis la liste de vos tickets.
+            </p>
+        </div>
+        
+        <p style="font-size: 16px; margin-bottom: 8px;">À très bientôt !</p>
+        <p style="font-size: 16px; font-weight: bold; color: #18181b; margin-top: 0;">L'équipe Mobytic</p>
+        
+        <div style="text-align: center; margin-bottom: 32px;">
+            <img src="https://mobytic.com/wp-content/uploads/2021/05/Logo-Mobytic.png" alt="Logo Mobytic" width="150" style="max-width: 100%; height: auto; display: inline-block;">
+        </div>
+
+    </div>
+
+    <div style="max-width: 600px; margin: 20px auto 0; text-align: center;">
+        <p style="font-size: 12px; color: #a1a1aa;">
+            Cet email a été envoyé automatiquement, merci de ne pas y répondre.
+        </p>
+    </div>
+
 </body>
 </html>
