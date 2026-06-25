@@ -3,7 +3,6 @@ import Ticket from '#models/ticket'
 
 export default class TicketCreatedClient extends BaseMail {
 
-    from = 'test@mobytic.com' 
     subject = 'Confirmation de création de votre ticket'
 
     constructor(public ticket: Ticket) {

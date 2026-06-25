@@ -3,7 +3,6 @@ import Ticket from '#models/ticket'
 
 export default class TicketClosedClient extends BaseMail {
 
-    from = 'test@mobytic.com' 
     subject = 'Tickey : Votre ticket a été traité !'
 
     constructor(public ticket: Ticket) {
@@ -11,7 +10,7 @@ export default class TicketClosedClient extends BaseMail {
     }
 
     prepare() {
-        this.message.to("test@mobytic.com")
+        this.message.to(this.ticket.user.mail)
         .htmlView('emails/ticket_closed', { ticket: this.ticket }) 
     }
 }
