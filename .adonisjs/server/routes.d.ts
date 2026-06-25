@@ -13,6 +13,7 @@ export type ScannedRoutes = {
     'auth.logout': { paramsTuple?: []; params?: {} }
     'auth.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'auth.website_index': { paramsTuple?: []; params?: {} }
+    'auth.delete': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'tickets.index': { paramsTuple?: []; params?: {} }
     'tickets.create': { paramsTuple?: []; params?: {} }
     'tickets.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
@@ -69,6 +70,7 @@ export type ScannedRoutes = {
     'nametags.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   DELETE: {
+    'auth.delete': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'categories.delete': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'ticket_statuses.delete': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'nametags.delete': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
