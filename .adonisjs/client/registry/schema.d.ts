@@ -115,6 +115,18 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'auth.delete': {
+    methods: ["DELETE"]
+    pattern: '/api/v1/auth/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
   'tickets.index': {
     methods: ["GET","HEAD"]
     pattern: '/api/v1/tickets'

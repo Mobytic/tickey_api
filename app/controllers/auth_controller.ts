@@ -7,6 +7,7 @@ import encryption from '@adonisjs/core/services/encryption'
 import { DateTime } from 'luxon'
 import mail from '@adonisjs/mail/services/main'
 import ForgotPasswordNotification from '#mails/forgot_password_notification'
+import env from '#start/env'
 
 
 export default class AuthController {
@@ -204,6 +205,34 @@ export default class AuthController {
   }
 
   /**
+   * user deletion
+   */
+  async delete({ params, response }: HttpContext) {
+    const transaction = await db.transaction()
+
+    try {
+
+      const user = await User.findOrFail(params.id)
+      user.useTransaction(transaction)
+      await user.delete()
+      await transaction.commit()
+
+      return response.ok({ 
+        message: "L'utilisateur a été supprimé avec succès." 
+      })
+
+    } catch (error) {
+      await transaction.rollback()
+
+      return response.internalServerError({
+        message: "Erreur lors de la suppression de l'utilisateur.",
+        error: error instanceof Error ? error.message : "Erreur inconnue"
+      })
+    }
+  }
+
+
+  /**
    * user password forgotten
    */
   async forgotPassword({ request, response }: HttpContext) {
@@ -228,10 +257,10 @@ export default class AuthController {
 
     const token = encryption.encrypt(payload)
 
-    // URL de ton application React (A adapte selon ton vrai port/domaine de dev ou prod)
+    const baseUrl = env.get('FRONTEND_URL', 'http://localhost:5173')
     // Le token est injecté dans les paramètres de l'URL pour que React puisse le lire
-    const frontendUrl = `http://localhost:5173/reset-password?token=${encodeURIComponent(token)}`
-
+    const frontendUrl = `${baseUrl}/reset-password?token=${encodeURIComponent(token)}`
+    
     await mail.sendLater(new ForgotPasswordNotification(user, frontendUrl))
 
     return response.ok({ 

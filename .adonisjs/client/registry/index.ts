@@ -60,6 +60,12 @@ const routes = {
     tokens: [{"old":"/api/v1/auth/websites","type":0,"val":"api","end":""},{"old":"/api/v1/auth/websites","type":0,"val":"v1","end":""},{"old":"/api/v1/auth/websites","type":0,"val":"auth","end":""},{"old":"/api/v1/auth/websites","type":0,"val":"websites","end":""}],
     types: placeholder as Registry['auth.website_index']['types'],
   },
+  'auth.delete': {
+    methods: ["DELETE"],
+    pattern: '/api/v1/auth/:id',
+    tokens: [{"old":"/api/v1/auth/:id","type":0,"val":"api","end":""},{"old":"/api/v1/auth/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/auth/:id","type":0,"val":"auth","end":""},{"old":"/api/v1/auth/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['auth.delete']['types'],
+  },
   'tickets.index': {
     methods: ["GET","HEAD"],
     pattern: '/api/v1/tickets',

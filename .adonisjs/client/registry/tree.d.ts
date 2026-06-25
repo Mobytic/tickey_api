@@ -12,6 +12,7 @@ export interface ApiDefinition {
     logout: typeof routes['auth.logout']
     update: typeof routes['auth.update']
     websiteIndex: typeof routes['auth.website_index']
+    delete: typeof routes['auth.delete']
   }
   tickets: {
     index: typeof routes['tickets.index']
