@@ -2,7 +2,7 @@ import { BaseMail } from '@adonisjs/mail'
 import User from '#models/user'
 
 export default class ForgotPasswordNotification extends BaseMail {
-    from = 'test@mobytic.com'
+
     subject = 'Tickey : Réinitialisation de votre mot de passe'
 
     constructor(public user: User, public resetLink: string) {
