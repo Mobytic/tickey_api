@@ -18,7 +18,14 @@ const corsConfig = defineConfig({
    * In production, keep an explicit allowlist (empty by default, so no
    * cross-origin browser access is allowed until configured).
    */
-  origin: app.inDev ? true : [],
+  origin: app.inDev 
+    ? true 
+    : [
+        'https://tickey.laura-chevillet.fr',
+        'http://tickey.laura-chevillet.fr',
+        'http://tickey.laura.chevillet.servd16161.odns.fr',
+        'https://tickey.laura.chevillet.servd16161.odns.fr'
+      ],
 
   /**
    * HTTP methods accepted for cross-origin requests.
